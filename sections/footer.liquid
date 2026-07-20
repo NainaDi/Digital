@@ -1,0 +1,14 @@
+<footer class="footer"><p class="brand">{{ shop.name }}</p><p>{{ section.settings.text }}</p></footer>
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Slow fashion for beautifully imperfect days."
+    }
+  ]
+}
+{% endschema %}

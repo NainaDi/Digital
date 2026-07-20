@@ -1,0 +1,31 @@
+<header class="site-header">
+  <nav class="nav" aria-label="{{ 'accessibility.main_navigation' | t }}">
+    <a class="brand" href="{{ routes.root_url }}">{{ shop.name | default: 'Ode to Odd' }}</a>
+    <div class="navLinks">
+      {% for link in linklists[section.settings.menu].links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% else %}
+        <a href="{{ routes.collections_url }}">Collection</a>
+        <a href="/pages/story">Story</a>
+        <a href="{{ routes.all_products_collection_url }}">Shop</a>
+      {% endfor %}
+    </div>
+    <div class="header-actions">
+      <a href="{{ routes.search_url }}" aria-label="{{ 'general.search.search' | t }}">{% render 'icon', icon: 'search' %}</a>
+      <a href="{{ routes.cart_url }}" aria-label="{{ 'templates.cart.cart' | t }}">{% render 'icon', icon: 'bag' %}<span>{{ cart.item_count }}</span></a>
+    </div>
+  </nav>
+</header>
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
