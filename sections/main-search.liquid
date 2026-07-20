@@ -1,0 +1,6 @@
+<section class="products"><div class="sectionTitle"><h1>{{ 'general.search.search' | t }}</h1><form action="{{ routes.search_url }}"><input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.search' | t }}"><button class="button">{{ 'general.search.submit' | t }}</button></form></div>{% if search.performed %}{% paginate search.results by 24 %}<div class="productGrid">{% for item in search.results %}{% if item.object_type == 'product' %}{% render 'product-card', product: item, fallback_index: forloop.index %}{% else %}<article class="product-card"><h3><a href="{{ item.url }}">{{ item.title }}</a></h3><p>{{ item.content | strip_html | truncate: 120 }}</p></article>{% endif %}{% endfor %}</div>{{ paginate | default_pagination }}{% endpaginate %}{% endif %}</section>
+{% schema %}
+{
+  "name": "Main search"
+}
+{% endschema %}
