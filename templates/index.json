@@ -4,7 +4,9 @@
       "type": "hero",
       "settings": {
         "heading": "Slow fashion for beautifully imperfect days.",
-        "text": "Natural textures, botanical color, and airy silhouettes arranged for a commerce-ready digital impression."
+        "text": "Natural textures, botanical color, and airy silhouettes arranged for a commerce-ready digital impression.",
+        "video_filename": "hero-banner.mp4",
+        "poster_filename": "hero-banner-poster.jpg"
       }
     },
     "categories": {
