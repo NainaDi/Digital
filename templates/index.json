@@ -1,16 +1,5 @@
 {
   "sections": {
-    "hero": {
-      "type": "hero",
-      "settings": {
-        "heading": "Ode to Odd, in motion.",
-        "text": "A quiet, cinematic banner for slow fashion and beautifully imperfect days.",
-        "video_filename": "hero-banner.mp4",
-        "poster_filename": "hero-banner-poster.jpg",
-        "button_label": "Explore the collection",
-        "button_link": "/collections/all"
-      }
-    },
     "categories": {
       "type": "featured-collections",
       "settings": {
@@ -27,7 +16,6 @@
     }
   },
   "order": [
-    "hero",
     "categories",
     "story"
   ]
