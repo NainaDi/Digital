@@ -1,0 +1,84 @@
+<section class="hero hero--banner">
+  <div class="heroMedia" aria-hidden="true">
+    {% if section.settings.video_filename != blank %}
+      <video class="heroMedia__item" autoplay muted loop playsinline poster="{{ section.settings.poster_filename | file_url }}">
+        <source src="{{ section.settings.video_filename | file_url }}" type="video/mp4">
+      </video>
+    {% elsif section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2200 | image_tag: class: 'heroMedia__item', loading: 'eager', sizes: '100vw', widths: '750,1100,1500,2200' }}
+    {% elsif section.settings.poster_filename != blank %}
+      <img class="heroMedia__item" src="{{ section.settings.poster_filename | file_url }}" alt="" loading="eager" width="2200" height="1200">
+    {% endif %}
+  </div>
+  <div class="heroOverlay"></div>
+  <div class="heroCopy">
+    <p class="eyebrow">✦ {{ section.settings.eyebrow }}</p>
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.text }}</p>
+    <a class="button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }} {% render 'icon', icon: 'arrow' %}</a>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Char Bagh Collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ode to Odd, in motion."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "A quiet, cinematic banner for slow fashion and beautifully imperfect days."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Explore the collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Store file banner"
+    },
+    {
+      "type": "text",
+      "id": "video_filename",
+      "label": "Shopify Files video filename",
+      "default": "hero-banner.mp4",
+      "info": "Upload the shared MP4 to Content > Files with this exact filename."
+    },
+    {
+      "type": "text",
+      "id": "poster_filename",
+      "label": "Shopify Files poster filename",
+      "default": "hero-banner-poster.jpg",
+      "info": "Used as the video poster or as a still banner fallback."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback theme-editor image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
