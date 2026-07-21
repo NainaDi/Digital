@@ -3,23 +3,18 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Slow fashion for beautifully imperfect days.",
-        "text": "Natural textures, botanical color, and airy silhouettes arranged for a commerce-ready digital impression.",
+        "heading": "Ode to Odd, in motion.",
+        "text": "A quiet, cinematic banner for slow fashion and beautifully imperfect days.",
         "video_filename": "hero-banner.mp4",
-        "poster_filename": "hero-banner-poster.jpg"
+        "poster_filename": "hero-banner-poster.jpg",
+        "button_label": "Explore the collection",
+        "button_link": "/collections/all"
       }
     },
     "categories": {
       "type": "featured-collections",
       "settings": {
         "heading": "Shop by category"
-      }
-    },
-    "featured": {
-      "type": "featured-products",
-      "settings": {
-        "heading": "Collection highlights",
-        "products_to_show": 4
       }
     },
     "story": {
@@ -34,7 +29,6 @@
   "order": [
     "hero",
     "categories",
-    "featured",
     "story"
   ]
 }
