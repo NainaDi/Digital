@@ -1,22 +1,11 @@
 {
   "sections": {
-    "categories": {
-      "type": "featured-collections",
-      "settings": {
-        "heading": "Shop by category"
-      }
-    },
-    "story": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "Slow by intention",
-        "heading": "Rooted in craft",
-        "text": "A connected Shopify theme for collections, product imagery, prices, cart, search, and navigation."
-      }
+    "oto_home": {
+      "type": "oto-home",
+      "settings": {}
     }
   },
   "order": [
-    "categories",
-    "story"
+    "oto_home"
   ]
 }
