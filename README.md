@@ -13,3 +13,11 @@ shopify theme check
 ```bash
 zip -r ode-to-odd-shopify-theme.zip assets config layout locales sections snippets templates README.md .gitkeep -x '*.git*' 'node_modules/*' 'dist/*'
 ```
+
+## Uploaded HTML and asset conversion
+
+The uploaded source files in this repository are AppleDouble `._*` metadata files rather than complete HTML/image/video payloads. The theme therefore maps the expected exported filenames to Shopify dynamic data and Shopify Files conventions:
+
+- Home hero: `hero-banner.mp4` with `hero-banner-poster.jpg` from Shopify Files.
+- Collection tiles: `category-<collection-handle>.jpg` when a collection has no featured image.
+- Product cards: `product-<product-handle>.jpg` when a product has no Shopify featured media.

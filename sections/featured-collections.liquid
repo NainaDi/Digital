@@ -1,4 +1,24 @@
-<section class="categories"><p class="eyebrow">☘ {{ section.settings.heading }}</p><div class="categoryGrid">{% for collection in collections limit: 6 %}{% unless collection.handle == 'frontpage' %}<a class="category" href="{{ collection.url }}">{% if collection.featured_image %}{{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}{% endif %}<span>{{ collection.title }}</span></a>{% endunless %}{% else %}{% assign cats = 'Kurta Sets,Dresses,Co-ord Sets,Shirts,Skirts,Trousers' | split: ',' %}{% for category in cats %}<a class="category" href="{{ routes.collections_url }}"><span>{{ category }}</span></a>{% endfor %}{% endfor %}</div></section>
+<section class="categories">
+  <p class="eyebrow">☘ {{ section.settings.heading }}</p>
+  <div class="categoryGrid">
+    {% for collection in collections limit: 6 %}
+      {% unless collection.handle == 'frontpage' %}
+        <a class="category" href="{{ collection.url }}">
+          {% if collection.featured_image %}
+            {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+          {% else %}
+            {% assign source_collection_filename = 'category-' | append: collection.handle | append: '.jpg' %}
+            <img src="{{ source_collection_filename | file_url }}" alt="{{ collection.title | escape }}" loading="lazy" width="600" height="600">
+          {% endif %}
+          <span>{{ collection.title }}</span>
+        </a>
+      {% endunless %}
+    {% else %}
+      {% assign cats = 'Kurta Sets,Dresses,Co-ord Sets,Shirts,Skirts,Trousers' | split: ',' %}
+      {% for category in cats %}<a class="category" href="{{ routes.collections_url }}"><span>{{ category }}</span></a>{% endfor %}
+    {% endfor %}
+  </div>
+</section>
 {% schema %}
 {
   "name": "Featured collections",
