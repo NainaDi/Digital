@@ -45,11 +45,25 @@
     <div><p class="eyebrow">From the studio</p><h2 class="display" id="editTitle">The Odd <em>Edit</em></h2></div>
     <div class="tabs" role="tablist" aria-label="Product edits"><button class="tab-button is-active" type="button">New Arrivals</button><button class="tab-button" type="button">Bestsellers</button><button class="tab-button" type="button">Ready to Ship</button></div>
   </div>
+  {% assign source_products = 'Char Bagh Kurta Set|product-char-bagh-kurta-set.jpg|₹ 59,500,Pakeezah Kurta Set|product-pakeezah-kurta-set.jpg|₹ 59,500,Tarini Kurta Set|product-tarini-kurta-set.jpg|₹ 27,900,Padmini Dress|product-padmini-dress.jpg|₹ 24,500,Tara Sitara Skirt|product-tara-sitara-skirt.jpg|₹ 24,500,Shwet Pankh Dress|product-shwet-pankh-dress.jpg|₹ 24,900,Son Champa Kurta Set|product-son-champa-kurta-set.jpg|₹ 66,500,Aprajita Kurta Set|product-aprajita-kurta-set.jpg|₹ 38,500,Aprajita Odhani|product-aprajita-odhani.jpg|₹ 25,900,Phulwari Set|product-phulwari-set.jpg|₹ 47,900,Kamal Nayan Kurta Set|product-kamal-nayan-kurta-set.jpg|₹ 41,500,Son Chidaiya Set|product-son-chidaiya-set.jpg|₹ 41,500,Sunhari Kurta Set|product-sunhari-kurta-set.jpg|₹ 38,500,Fitoor Set|product-fitoor-set.jpg|₹ 46,500,Fitoor Skirt|product-fitoor-skirt.jpg|₹ 24,500,Fitoor Shirt|product-fitoor-shirt.jpg|₹ 19,500,Beaded Necklace|jewellery-beaded-necklace.jpg|₹ 8,500,Celestial Signet Ring|jewellery-celestial-ring.jpg|₹ 5,500,Luna Ring|jewellery-luna-ring.jpg|₹ 4,500,Cottage Blossom Bag|bag-cottage-blossom.jpg|₹ 9,500,Vanilla Bloom Bag|bag-vanilla-bloom.jpg|₹ 25,900' | split: ',' %}
+  {% assign storefront_products = collections['all'].products %}
   <div class="product-rail">
-    {% for product in collections.all.products limit: 50 %}{% render 'product-card', product: product %}{% else %}
-      {% assign products = 'Char Bagh Kurta Set|product-char-bagh-kurta-set.jpg|₹ 59,500,Pakeezah Kurta Set|product-pakeezah-kurta-set.jpg|₹ 59,500,Tarini Kurta Set|product-tarini-kurta-set.jpg|₹ 27,900,Padmini Dress|product-padmini-dress.jpg|₹ 24,500,Tara Sitara Skirt|product-tara-sitara-skirt.jpg|₹ 24,500,Shwet Pankh Dress|product-shwet-pankh-dress.jpg|₹ 24,900,Son Champa Kurta Set|product-son-champa-kurta-set.jpg|₹ 66,500,Aprajita Kurta Set|product-aprajita-kurta-set.jpg|₹ 38,500,Aprajita Odhani|product-aprajita-odhani.jpg|₹ 25,900,Phulwari Set|product-phulwari-set.jpg|₹ 47,900,Kamal Nayan Kurta Set|product-kamal-nayan-kurta-set.jpg|₹ 41,500,Son Chidaiya Set|product-son-chidaiya-set.jpg|₹ 41,500,Sunhari Kurta Set|product-sunhari-kurta-set.jpg|₹ 38,500,Fitoor Set|product-fitoor-set.jpg|₹ 46,500,Fitoor Skirt|product-fitoor-skirt.jpg|₹ 24,500,Fitoor Shirt|product-fitoor-shirt.jpg|₹ 19,500,Beaded Necklace|jewellery-beaded-necklace.jpg|₹ 8,500,Celestial Signet Ring|jewellery-celestial-ring.jpg|₹ 5,500,Luna Ring|jewellery-luna-ring.jpg|₹ 4,500,Cottage Blossom Bag|bag-cottage-blossom.jpg|₹ 9,500,Vanilla Bloom Bag|bag-vanilla-bloom.jpg|₹ 25,900' | split: ',' %}
-      {% for item in products %}{% assign pair = item | split: '|' %}<article class="product-card reveal"><div class="product-card__media"><img src="{{ pair[1] | file_url }}" alt="{{ pair[0] | escape }}" loading="lazy" width="1200" height="1600"></div><h3>{{ pair[0] }}</h3><p>{{ pair[2] }}</p></article>{% endfor %}
-    {% endfor %}
+    {% if storefront_products.size > 0 %}
+      {% for product in storefront_products limit: 50 %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    {% else %}
+      {% for item in source_products %}
+        {% assign pair = item | split: '|' %}
+        <article class="product-card source-product-card">
+          <div class="product-card__media">
+            <img src="{{ pair[1] | file_url }}" alt="{{ pair[0] | escape }}" loading="lazy" width="1200" height="1600">
+          </div>
+          <h3>{{ pair[0] }}</h3>
+          <p>{{ pair[2] }}</p>
+        </article>
+      {% endfor %}
+    {% endif %}
   </div>
 </section>
 
