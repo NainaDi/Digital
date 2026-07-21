@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-theme="porcelain" data-font="instrument">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover a handworked Ode to Odd piece, its craft, fit, and customisation options.">
+  <title>Product - Ode to Odd</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@300;400;500&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="assets/js/data.js?v=5"></script>
+  <script defer src="assets/js/site.js?v=6"></script>
+  <script defer src="assets/js/product.js?v=5"></script>
+</head>
+<body data-page="product">
+  <div id="site-shell"></div>
+
+  <main>
+    <section class="pdp-layout" aria-label="Product details">
+      <div class="pdp-gallery" id="pdpGallery" aria-label="Product gallery"></div>
+      <div class="pdp-info">
+        <div class="breadcrumbs" id="pdpBreadcrumbs">Home · Collection · Product</div>
+        <div class="pdp-title-row">
+          <h1 class="pdp-title" id="pdpTitle">Product</h1>
+          <button class="share-button" id="shareProduct" type="button"><i data-lucide="share-2" aria-hidden="true"></i> Share</button>
+        </div>
+        <div class="pdp-price money" id="pdpPrice" data-inr="0" data-usd="0"></div>
+        <p class="pdp-poem" id="pdpPoem"></p>
+
+        <div id="productOptions"></div>
+
+        <div class="pdp-actions">
+          <button class="button-solid" id="addProduct" type="button">Select options</button>
+        </div>
+
+        <div class="pdp-delivery">
+          <div class="dispatch-note" id="dispatchNote"><i data-lucide="calendar-clock" aria-hidden="true"></i><span></span></div>
+          <p class="pdp-assistance">Need a faster delivery? <a href="https://wa.me/916287729291" target="_blank" rel="noopener">WhatsApp our atelier</a></p>
+        </div>
+
+        <div class="pdp-usps" id="pdpUsps"></div>
+
+        <div class="accordion-list" id="productAccordions"></div>
+      </div>
+    </section>
+
+    <section class="section recommendations" aria-labelledby="recommendationsTitle">
+      <div class="shell section-heading reveal"><div><p class="eyebrow">Continue the story</p><h2 class="display" id="recommendationsTitle">You May Also <em>Love</em></h2></div></div>
+      <div class="product-rail" id="recommendationRail"></div>
+    </section>
+
+    <section class="section recommendations" aria-labelledby="recentTitle">
+      <div class="shell section-heading reveal"><div><p class="eyebrow">Your path</p><h2 class="display" id="recentTitle">Recently <em>Viewed</em></h2></div></div>
+      <div class="product-rail" id="recentRail"></div>
+    </section>
+  </main>
+
+  <div class="modal" id="sizeGuideModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="sizeGuideTitle">
+    <div class="modal-panel">
+      <div class="modal-head"><h2 id="sizeGuideTitle">Size Guide</h2><button class="icon-button" id="sizeGuideClose" type="button" aria-label="Close size guide"><i data-lucide="x" aria-hidden="true"></i></button></div>
+      <div class="modal-body">
+        <div class="tabs measure-tabs" role="tablist" aria-label="Measurement units">
+          <button class="tab-button is-active" type="button" data-measure-unit="in">Inches</button>
+          <button class="tab-button" type="button" data-measure-unit="cm">Centimetres</button>
+        </div>
+        <div class="size-table-wrap" id="sizeTableWrap"></div>
+        <div class="measure-note">
+          <div><h3>Bust</h3><p>Measure around the fullest part, keeping the tape level.</p></div>
+          <div><h3>Waist</h3><p>Measure around the natural waist without pulling the tape tight.</p></div>
+          <div><h3>Hips</h3><p>Measure around the fullest part with your feet together.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="backdrop" id="customBackdrop"></div>
+  <aside class="drawer custom-drawer" id="customDrawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="customTitle">
+    <div class="drawer-head"><h2 id="customTitle">Made for You</h2><button class="icon-button" id="customClose" type="button" aria-label="Close customisation"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <div class="drawer-body">
+      <p class="pdp-poem">Tell the atelier how the piece should meet you.</p>
+      <form class="custom-form" id="customForm">
+        <div class="field"><label for="customName">Name</label><input id="customName" name="name" required></div>
+        <div class="field"><label for="customEmail">Email</label><input id="customEmail" name="email" type="email" required></div>
+        <div class="field"><label for="customPhone">Phone / WhatsApp</label><input id="customPhone" name="phone" type="tel" required></div>
+        <div class="field"><label for="customBaseSize">Closest base size</label><select id="customBaseSize" name="baseSize" required><option value="">Select</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+        <div class="field"><label for="customHeight">Height</label><input id="customHeight" name="height" placeholder="cm" required></div>
+        <div class="field"><label for="customBust">Bust</label><input id="customBust" name="bust" placeholder="inches" required></div>
+        <div class="field"><label for="customWaist">Waist</label><input id="customWaist" name="waist" placeholder="inches" required></div>
+        <div class="field"><label for="customHips">Hips</label><input id="customHips" name="hips" placeholder="inches" required></div>
+        <div class="field"><label for="customGarment">Garment length</label><input id="customGarment" name="garmentLength" placeholder="optional"></div>
+        <div class="field"><label for="customSleeve">Sleeve length</label><input id="customSleeve" name="sleeveLength" placeholder="optional"></div>
+        <div class="field"><label for="customTrouser">Trouser length</label><input id="customTrouser" name="trouserLength" placeholder="optional"></div>
+        <div class="field"><label for="customFit">Fit preference</label><select id="customFit" name="fit" required><option value="">Select</option><option>Close fit</option><option>True to size</option><option>Relaxed fit</option></select></div>
+        <div class="field full"><label for="customDate">Required by</label><input id="customDate" name="requiredBy" type="date"></div>
+        <div class="field full"><label for="customNotes">Notes for the atelier</label><textarea id="customNotes" name="notes"></textarea></div>
+        <div class="field full form-note">Made-to-measure pieces carry a 10% surcharge and cannot be returned or exchanged. The final amount will be shown before adding to cart.</div>
+        <div class="field full"><button class="button-solid" id="customSubmit" type="submit">Add Custom Piece</button></div>
+      </form>
+    </div>
+  </aside>
+
+  <div id="site-footer"></div>
+</body>
+</html>
