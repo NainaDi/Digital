@@ -1,13 +1,198 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ode to Odd | Digital Impression</title>
-    <meta name="description" content="A static fashion storefront preview for Ode to Odd's Char Bagh collection." />
-    <script type="module" src="/src/main.jsx"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="en" data-theme="porcelain" data-font="instrument">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ode to Odd creates quietly expressive, handworked clothing and objects in India.">
+  <title>Ode to Odd - Quiet Luxury</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@300;400;500&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="assets/js/data.js?v=5"></script>
+  <script defer src="assets/js/site.js?v=6"></script>
+</head>
+<body data-page="home">
+  <div id="site-shell"></div>
+
+  <main>
+    <section class="hero" aria-label="Once Upon a Time campaign">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/hero-banner-poster.jpg" data-autoplay-video>
+        <source src="assets/hero-banner-web.webm" type="video/webm">
+        <source src="assets/hero-banner-web.mp4" type="video/mp4">
+      </video>
+      <div class="hero-content">
+        <p class="eyebrow">Chapter II · Summer 2026</p>
+        <h1>Once Upon <em>a</em> Time</h1>
+        <a class="button" href="collection.html?handle=collections">Discover</a>
+      </div>
+      <span class="hero-label">Campaign film · Once Upon a Time</span>
+    </section>
+
+    <section class="section manifesto reveal" aria-labelledby="manifestoTitle">
+      <div class="shell">
+        <span class="script">an ode</span>
+        <h2 class="display" id="manifestoTitle">Beauty, in the imperfect.</h2>
+        <p>For the unique and the uneven; for garments that carry the memory of the hands that made them. Ode to Odd shapes Indian craft into pieces with room for a life of their own.</p>
+        <img class="manifesto-garland" src="assets/beauty-imperfect-garland.png" alt="" aria-hidden="true">
+        <div class="stitch-motif" aria-hidden="true"><span>×</span><span>×</span><span>×</span><span>×</span><span>×</span></div>
+      </div>
+    </section>
+
+    <section class="category-wrap" aria-labelledby="categoryTitle">
+      <div class="shell section-heading reveal">
+        <div>
+          <p class="eyebrow">Categories</p>
+          <h2 class="display" id="categoryTitle">Find your <em>form</em></h2>
+        </div>
+        <p>Drawn as an idea before it is shaped in cloth. Browse by the silhouette that feels most like you.</p>
+      </div>
+      <div class="horizontal-rail" id="categoryRail" aria-label="Product categories"></div>
+    </section>
+
+    <section class="feature-banner reveal" aria-labelledby="beautyTitle">
+      <img src="assets/flying.png" alt="A pleated Ode to Odd dress drifting through a blue sky" loading="lazy">
+      <div class="feature-banner-copy">
+        <p class="eyebrow">An odd little world</p>
+        <h2 class="display" id="beautyTitle">A Thing of <em>Beauty</em></h2>
+        <p>Handworked pieces for days that refuse to be ordinary.</p>
+        <a class="button" href="collection.html?handle=collections">Enter the chapter</a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="editTitle">
+      <div class="shell section-heading reveal">
+        <div>
+          <p class="eyebrow">From the studio</p>
+          <h2 class="display" id="editTitle">The Odd <em>Edit</em></h2>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Product edits">
+          <button class="tab-button is-active" type="button" role="tab" data-home-tab="new">New Arrivals</button>
+          <button class="tab-button" type="button" role="tab" data-home-tab="best">Bestsellers</button>
+          <button class="tab-button" type="button" role="tab" data-home-tab="ready">Ready to Ship</button>
+        </div>
+      </div>
+      <div class="product-rail" id="homeProductRail" role="tabpanel" aria-live="polite"></div>
+    </section>
+
+    <section class="collection-story reveal" aria-labelledby="collectionStoryTitle">
+      <div class="story-media"><img src="assets/col-1.jpg" alt="Ode to India campaign portrait" loading="lazy"></div>
+      <div class="story-copy">
+        <div class="story-copy-inner">
+          <p class="eyebrow">Collection</p>
+          <h2 class="display" id="collectionStoryTitle">Ode to <em>India</em></h2>
+          <p>Heirloom-ready pieces shaped by handwork, memory, and ceremonial ease.</p>
+          <a class="button" href="collection.html?handle=collections">Explore collection</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="focus-split reveal" aria-label="Featured piece and campaign film">
+      <div class="focus-product-panel">
+        <div class="focus-product-head">
+          <p class="eyebrow">Featured piece</p>
+          <div class="focus-controls">
+            <button class="icon-button" id="focusPrev" type="button" aria-label="Previous featured piece"><i data-lucide="arrow-left" aria-hidden="true"></i></button>
+            <button class="icon-button" id="focusNext" type="button" aria-label="Next featured piece"><i data-lucide="arrow-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="focus-product-card" id="focusProduct" aria-live="polite"></div>
+      </div>
+      <div class="focus-video">
+        <video muted loop playsinline preload="none" poster="assets/collection-2-square-poster.jpg" data-autoplay-video aria-label="Ode to Odd collection film">
+          <source src="assets/collection-2-square.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <section class="section jewellery-feature" aria-labelledby="jewelleryTitle">
+      <div class="shell jewellery-layout">
+        <div class="jewellery-intro reveal">
+          <p class="eyebrow">Jewellery &amp; Bags</p>
+          <h2 class="display" id="jewelleryTitle">Small Objects,<br><em>Lasting Stories</em></h2>
+          <p>Cast forms, counted beadwork, and bags made to gather marks, memories, and conversation.</p>
+          <a class="text-link" href="collection.html?handle=shop">Explore accessories <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="jewellery-grid" id="jewelleryGrid"></div>
+      </div>
+    </section>
+
+    <section class="roots-feature reveal" aria-labelledby="rootsTitle">
+      <div class="roots-media"><img src="assets/roots.jpg" alt="Map tracing Ode to Odd from its roots in Ranchi to Patna and Siliguri" loading="lazy"></div>
+      <div class="roots-copy">
+        <div>
+          <p class="eyebrow">Where the story began</p>
+          <h2 class="display" id="rootsTitle">Our <em>Roots</em></h2>
+          <p>Cross stitch first found us in Ranchi. We carried its patient rhythm into every chapter that followed.</p>
+          <a class="button" href="our-story.html">Read our story</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="craft-feature reveal" aria-labelledby="craftTitle">
+      <div class="craft-copy">
+        <div>
+          <p class="eyebrow">Our craft</p>
+          <h2 class="display" id="craftTitle">Slow by <em>intention</em></h2>
+          <div class="craft-points">
+            <article class="craft-point"><span>01</span><div><h3>Counted by hand</h3><p>Cross stitch and beadwork are built one quiet mark at a time.</p></div></article>
+            <article class="craft-point"><span>02</span><div><h3>Natural foundations</h3><p>Handwoven silks and cottons carry the character of their making.</p></div></article>
+            <article class="craft-point"><span>03</span><div><h3>Made for keeping</h3><p>Small batches, careful finishes, and silhouettes with space to evolve.</p></div></article>
+          </div>
+        </div>
+      </div>
+      <div class="craft-video">
+        <video muted loop playsinline preload="none" poster="assets/slow-by-intention-poster.jpg" data-autoplay-video aria-label="Hand embroidery in the Ode to Odd studio">
+          <source src="assets/slow-by-intention.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="peopleTitle">
+      <div class="shell section-heading reveal">
+        <div>
+          <p class="eyebrow">The community</p>
+          <h2 class="display" id="peopleTitle">People of <em>Ode to Odd</em></h2>
+        </div>
+        <div class="tabs" role="tablist" aria-label="People of Ode to Odd">
+          <button class="tab-button is-active" type="button" role="tab" data-community-tab="creators">Celebrities & Creators</button>
+          <button class="tab-button" type="button" role="tab" data-community-tab="people">Real People</button>
+          <button class="tab-button" type="button" role="tab" data-community-tab="influencers">Influencers</button>
+        </div>
+      </div>
+      <div class="shell community-grid" id="communityGrid" role="tabpanel" aria-live="polite"></div>
+    </section>
+
+    <section class="section" aria-labelledby="reelsTitle">
+      <div class="shell section-heading reveal">
+        <div>
+          <p class="eyebrow">Moving stories</p>
+          <h2 class="display" id="reelsTitle">Worn in <em>Motion</em></h2>
+        </div>
+        <p>Five passing moments from the campaign, each connected to the piece in frame.</p>
+      </div>
+      <div class="shell reels-grid" id="reelsGrid"></div>
+    </section>
+
+    <section class="section newsletter reveal" aria-labelledby="newsletterTitle">
+      <div class="shell newsletter-layout">
+        <img class="newsletter-botanical" src="assets/image.png" alt="" aria-hidden="true" loading="lazy">
+        <div class="newsletter-copy">
+          <p class="eyebrow">Letters from the studio</p>
+          <h2 class="display" id="newsletterTitle">Love Letters To Your Inbox</h2>
+          <p>New chapters, atelier notes, and first access - sent only when there is something worth sharing.</p>
+          <form>
+            <label class="sr-only" for="newsletterEmail">Email address</label>
+            <input id="newsletterEmail" type="email" placeholder="your email, softly" required>
+            <button class="button" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
 </html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="porcelain" data-font="instrument">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create an Ode to Odd digital gift card for someone you love.">
+  <title>E-Gift Card - Ode to Odd</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@300;400;500&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="assets/js/data.js?v=5"></script>
+  <script defer src="assets/js/site.js?v=6"></script>
+</head>
+<body data-page="gift-card">
+  <div id="site-shell"></div>
+
+  <main class="shell gift-layout">
+    <div class="gift-preview-wrap reveal">
+      <div class="gift-preview" id="giftPreview" data-design="garden" aria-label="Gift card preview">
+        <div class="gift-preview-brand">Ode To Odd</div>
+        <div class="gift-preview-message" id="giftPreviewMessage">For something beautifully, entirely your own.</div>
+        <div class="gift-preview-amount" id="giftPreviewAmount">₹ 5,000</div>
+      </div>
+    </div>
+
+    <form class="gift-form reveal" id="giftForm">
+      <div>
+        <p class="eyebrow">A considered gesture</p>
+        <h1 class="display">The Gift of <em>Choice</em></h1>
+        <p class="muted">A digital note for a future heirloom, delivered on the day you choose.</p>
+      </div>
+
+      <div class="field">
+        <label>Choose a card design</label>
+        <div class="gift-swatches" role="group" aria-label="Gift card design">
+          <button class="gift-swatch is-active" type="button" data-gift-design="garden" aria-label="Garden red"></button>
+          <button class="gift-swatch" type="button" data-gift-design="night" aria-label="Atelier night"></button>
+          <button class="gift-swatch" type="button" data-gift-design="porcelain" aria-label="Porcelain"></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Value</label>
+        <div class="amount-options">
+          <button class="option-button is-active" type="button" data-gift-amount="5000">5,000</button>
+          <button class="option-button" type="button" data-gift-amount="10000">10,000</button>
+          <button class="option-button" type="button" data-gift-amount="25000">25,000</button>
+          <button class="option-button" type="button" data-gift-amount="50000">50,000</button>
+        </div>
+      </div>
+
+      <div class="field"><label for="giftAmount">Custom value</label><input id="giftAmount" type="number" min="1" value="5000" required></div>
+      <div class="field"><label for="giftRecipient">Recipient name</label><input id="giftRecipient" required></div>
+      <div class="field"><label for="giftEmail">Recipient email</label><input id="giftEmail" type="email" required></div>
+      <div class="field"><label for="giftSender">From</label><input id="giftSender" required></div>
+      <div class="field"><label for="giftDelivery">Delivery date</label><input id="giftDelivery" type="date" required></div>
+      <div class="field"><label for="giftMessage">A note for them</label><textarea id="giftMessage" maxlength="140" placeholder="For something beautifully, entirely your own."></textarea></div>
+      <div class="form-note">This prototype adds the configured gift card to the local cart. It does not send an email or issue a live gift-card code.</div>
+      <button class="button-solid" type="submit">Add Gift Card to Cart</button>
+    </form>
+  </main>
+
+  <section class="section gift-story" aria-labelledby="giftStoryTitle">
+    <div class="shell section-heading reveal"><div><p class="eyebrow">A keepsake, considered</p><h2 class="display" id="giftStoryTitle">Front, back, and <em>the reveal</em></h2></div><p>The chosen design carries through the card, personal note, and presentation.</p></div>
+    <div class="shell gift-gallery">
+      <figure class="gift-gallery-figure reveal">
+        <div class="gift-gallery-card gift-gallery-front" data-gift-gallery-design="garden"><span>Ode To Odd</span><strong id="giftGalleryAmount">₹ 5,000</strong></div>
+        <figcaption>Card front</figcaption>
+      </figure>
+      <figure class="gift-gallery-figure reveal">
+        <div class="gift-gallery-card gift-gallery-back" data-gift-gallery-design="garden"><span>For</span><strong id="giftGalleryRecipient">Someone special</strong><p id="giftGalleryMessage">For something beautifully, entirely your own.</p></div>
+        <figcaption>Personalised reverse</figcaption>
+      </figure>
+      <figure class="gift-gallery-figure reveal">
+        <div class="gift-envelope" data-gift-gallery-design="garden"><div class="gift-envelope-flap"></div><span>With love, from Ode to Odd</span></div>
+        <figcaption>Digital presentation</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+</body>
+</html>
