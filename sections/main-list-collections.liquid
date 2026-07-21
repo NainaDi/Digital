@@ -1,0 +1,6 @@
+<section class="list-collections"><div class="sectionTitle"><p class="eyebrow">Collections</p><h1>{{ 'templates.list_collections.title' | t }}</h1></div><div class="categoryGrid">{% for collection in collections %}<a class="category" href="{{ collection.url }}">{% if collection.featured_image %}{{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}{% endif %}<span>{{ collection.title }}</span></a>{% endfor %}</div></section>
+{% schema %}
+{
+  "name": "Main list collections"
+}
+{% endschema %}
