@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.DS_Store
+ode-to-odd-shopify-theme.zip
+._*
+__MACOSX/

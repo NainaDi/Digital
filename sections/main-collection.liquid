@@ -1,0 +1,6 @@
+<section class="products"><div class="sectionTitle"><p class="eyebrow">Collection</p><h1>{{ collection.title }}</h1>{% if collection.description != blank %}<p>{{ collection.description }}</p>{% endif %}</div>{% paginate collection.products by 24 %}<div class="productGrid">{% for product in collection.products %}{% render 'product-card', product: product, fallback_index: forloop.index %}{% else %}<p>{{ 'sections.collection_template.empty' | t }}</p>{% endfor %}</div>{% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}{% endpaginate %}</section>
+{% schema %}
+{
+  "name": "Main collection"
+}
+{% endschema %}

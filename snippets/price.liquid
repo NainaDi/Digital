@@ -1,0 +1,7 @@
+{%- if product.price_varies -%}
+  {{ 'products.product.from_price_html' | t: price: product.price_min | money }}
+{%- elsif product.compare_at_price > product.price -%}
+  <span class="price price--sale">{{ product.price | money }}</span> <s>{{ product.compare_at_price | money }}</s>
+{%- else -%}
+  <span class="price">{{ product.price | money }}</span>
+{%- endif -%}
