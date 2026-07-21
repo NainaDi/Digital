@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Ode to Odd, in motion.",
+        "text": "A quiet, cinematic banner for slow fashion and beautifully imperfect days.",
+        "video_filename": "hero-banner.mp4",
+        "poster_filename": "hero-banner-poster.jpg",
+        "button_label": "Explore the collection",
+        "button_link": "/collections/all"
+      }
+    },
+    "categories": {
+      "type": "featured-collections",
+      "settings": {
+        "heading": "Shop by category"
+      }
+    },
+    "story": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Slow by intention",
+        "heading": "Rooted in craft",
+        "text": "A connected Shopify theme for collections, product imagery, prices, cart, search, and navigation."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "story"
+  ]
+}

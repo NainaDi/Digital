@@ -1,0 +1,6 @@
+<section class="product-detail"><div class="product-gallery">{% for media in product.media %}{{ media | image_url: width: 900 | image_tag: loading: 'lazy' }}{% else %}<div class="productImage">01</div>{% endfor %}</div><div class="product-info"><p class="eyebrow">{{ product.vendor }}</p><h1>{{ product.title }}</h1><p class="product-price">{% render 'price', product: product %}</p><div class="rte">{{ product.description }}</div>{% form 'product', product %}<select name="id">{% for variant in product.variants %}<option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>{{ variant.title }} - {{ variant.price | money }}</option>{% endfor %}</select><button class="button" type="submit">{{ 'products.product.add_to_cart' | t }}</button>{% endform %}</div></section>
+{% schema %}
+{
+  "name": "Main product"
+}
+{% endschema %}
