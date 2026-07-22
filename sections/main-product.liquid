@@ -1,6 +1,61 @@
-<section class="product-detail"><div class="product-gallery">{% for media in product.media %}{{ media | image_url: width: 900 | image_tag: loading: 'lazy' }}{% else %}<div class="productImage">01</div>{% endfor %}</div><div class="product-info"><p class="eyebrow">{{ product.vendor }}</p><h1>{{ product.title }}</h1><p class="product-price">{% render 'price', product: product %}</p><div class="rte">{{ product.description }}</div>{% form 'product', product %}<select name="id">{% for variant in product.variants %}<option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>{{ variant.title }} - {{ variant.price | money }}</option>{% endfor %}</select><button class="button" type="submit">{{ 'products.product.add_to_cart' | t }}</button>{% endform %}</div></section>
-{% schema %}
-{
-  "name": "Main product"
-}
-{% endschema %}
+<section class="pdp-layout" aria-label="Product details">
+  <div class="pdp-gallery" aria-label="Product gallery">
+    {% for media in product.media %}
+      <div class="pdp-media">{{ media | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 54vw, 100vw', widths: '500,800,1200', alt: media.alt | default: product.title }}</div>
+    {% else %}
+      {% assign fallback_image = 'product-' | append: product.handle | append: '.jpg' %}
+      <div class="pdp-media"><img src="{{ fallback_image | file_url }}" alt="{{ product.title | escape }}" loading="lazy" width="1200" height="1600"></div>
+    {% endfor %}
+  </div>
+
+  <div class="pdp-info">
+    <div class="breadcrumbs"><a href="{{ routes.root_url }}">Home</a> · <a href="{{ routes.collections_url }}">Collection</a> · {{ product.title }}</div>
+    <div class="pdp-title-row">
+      <h1 class="pdp-title">{{ product.title }}</h1>
+      <button class="share-button" type="button" data-share-product>Share</button>
+    </div>
+    <div class="pdp-price money">{% render 'price', product: product %}</div>
+    {% if product.metafields.custom.poem != blank %}<p class="pdp-poem">{{ product.metafields.custom.poem }}</p>{% elsif product.description != blank %}<p class="pdp-poem">{{ product.description | strip_html | truncate: 150 }}</p>{% endif %}
+
+    {% form 'product', product, class: 'pdp-form' %}
+      <div class="product-options">
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <fieldset class="option-group">
+              <legend>{{ option.name }}</legend>
+              <div class="option-pills">
+                {% for value in option.values %}
+                  <label class="option-pill"><input type="radio" name="options[{{ option.name | escape }}]" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}> <span>{{ value }}</span></label>
+                {% endfor %}
+              </div>
+            </fieldset>
+          {% endfor %}
+        {% endunless %}
+        <label class="variant-select" for="ProductSelect-{{ section.id }}">Variant</label>
+        <select id="ProductSelect-{{ section.id }}" name="id">
+          {% for variant in product.variants %}<option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>{{ variant.title }} - {{ variant.price | money }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="pdp-actions"><button class="button-solid" type="submit" {% unless product.available %}disabled{% endunless %}>{% if product.available %}Add to Bag{% else %}Sold Out{% endif %}</button></div>
+    {% endform %}
+
+    <div class="pdp-delivery"><div class="dispatch-note"><span aria-hidden="true">◷</span><span>Made slowly. Dispatch timing is confirmed after order placement.</span></div><p class="pdp-assistance">Need a faster delivery? <a href="https://wa.me/916287729291" target="_blank" rel="noopener">WhatsApp our atelier</a></p></div>
+    <div class="pdp-usps"><div>Handworked in India</div><div>Small batch craft</div><div>Secure checkout</div></div>
+    <div class="accordion-list">
+      <details open><summary>Description</summary><div class="rte">{{ product.description }}</div></details>
+      <details><summary>Care</summary><p>Professional dry clean only. Store carefully in a breathable cover.</p></details>
+      <details><summary>Shipping & returns</summary><p>Made-to-order pieces follow atelier timelines. Ready pieces dispatch sooner.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section recommendations" aria-labelledby="recommendationsTitle">
+  <div class="shell section-heading reveal"><div><p class="eyebrow">Continue the story</p><h2 class="display" id="recommendationsTitle">You May Also <em>Love</em></h2></div></div>
+  <div class="product-rail">
+    {% assign shown = 0 %}
+    {% for related_product in collections.all.products limit: 8 %}
+      {% if related_product.id != product.id %}{% assign shown = shown | plus: 1 %}{% render 'product-card', product: related_product %}{% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% schema %}{"name":"Main product"}{% endschema %}

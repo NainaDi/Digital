@@ -39,3 +39,16 @@ document.querySelectorAll('.tabs').forEach((tabs) => {
     tabs.querySelectorAll('.tab-button').forEach((item) => item.classList.toggle('is-active', item === button));
   });
 });
+
+document.querySelectorAll('[data-share-product]').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const shareData = { title: document.title, url: window.location.href };
+    if (navigator.share) {
+      try { await navigator.share(shareData); } catch (error) { /* User cancelled native share. */ }
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(window.location.href);
+      button.textContent = 'Copied';
+      window.setTimeout(() => { button.textContent = 'Share'; }, 1800);
+    }
+  });
+});

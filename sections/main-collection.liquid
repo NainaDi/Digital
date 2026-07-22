@@ -1,6 +1,30 @@
-<section class="products"><div class="sectionTitle"><p class="eyebrow">Collection</p><h1>{{ collection.title }}</h1>{% if collection.description != blank %}<p>{{ collection.description }}</p>{% endif %}</div>{% paginate collection.products by 24 %}<div class="productGrid">{% for product in collection.products %}{% render 'product-card', product: product, fallback_index: forloop.index %}{% else %}<p>{{ 'sections.collection_template.empty' | t }}</p>{% endfor %}</div>{% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}{% endpaginate %}</section>
-{% schema %}
-{
-  "name": "Main collection"
-}
-{% endschema %}
+<header class="page-hero reveal">
+  <p class="eyebrow">The archive</p>
+  <h1 class="display" id="collectionTitle">{{ collection.title | default: 'All Pieces' }}</h1>
+  {% if collection.description != blank %}<p id="collectionDescription">{{ collection.description | strip_html }}</p>{% else %}<p id="collectionDescription">An evolving archive of handworked clothing and objects.</p>{% endif %}
+</header>
+
+<section class="shell" aria-label="Collection products">
+  {% paginate collection.products by 24 %}
+    <div class="filter-bar">
+      <div class="collection-tools">
+        <button class="collection-tool" type="button" aria-label="Filter products"><span aria-hidden="true">☷</span><span>Filter</span></button>
+        <label class="collection-tool" for="SortBy"><span aria-hidden="true">↕</span><span>Sort</span>
+          <select id="SortBy" name="sort_by" onchange="location.search='?sort_by=' + this.value">
+            {% for option in collection.sort_options %}<option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>{% endfor %}
+          </select>
+        </label>
+      </div>
+      <nav class="collection-subnav" aria-label="Browse product categories">
+        <a href="{{ routes.all_products_collection_url }}">All</a>
+        {% for link in linklists[section.settings.category_menu].links %}<a href="{{ link.url }}">{{ link.title }}</a>{% endfor %}
+      </nav>
+      <span class="collection-count">{{ collection.products_count }} pieces</span>
+    </div>
+    <div class="collection-grid" aria-live="polite">
+      {% for product in collection.products %}{% render 'product-card', product: product, fallback_index: forloop.index %}{% else %}<p>{{ 'sections.collection_template.empty' | t }}</p>{% endfor %}
+    </div>
+    {% if paginate.pages > 1 %}<div class="pagination-wrap">{{ paginate | default_pagination }}</div>{% endif %}
+  {% endpaginate %}
+</section>
+{% schema %}{"name":"Main collection","settings":[{"type":"link_list","id":"category_menu","label":"Category menu","default":"main-menu"}]}{% endschema %}
