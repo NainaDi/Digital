@@ -27,7 +27,7 @@
     <div><p class="eyebrow">Categories</p><h2 class="display" id="categoryTitle">Find your <em>form</em></h2></div>
     <p>Drawn as an idea before it is shaped in cloth. Browse by the silhouette that feels most like you.</p>
   </div>
-  <div class="horizontal-rail" aria-label="Product categories">
+  <div class="horizontal-rail" id="categoryRail" aria-label="Product categories">
     {% assign category_images = 'Dresses|category-dresses.jpg,Kurta Sets|category-kurta-sets.jpg,Co-ord Sets|category-coord-sets.jpg,Shirts|category-shirts.jpg,Skirts|category-skirts.jpg,Trousers|category-trousers.jpg' | split: ',' %}
     {% for item in category_images %}{% assign pair = item | split: '|' %}
       <a class="category-tile reveal" href="{{ routes.collections_url }}"><img src="{{ pair[1] | file_url }}" alt="{{ pair[0] | escape }}" loading="lazy" width="1200" height="1600"><span>{{ pair[0] }}</span></a>
@@ -43,11 +43,11 @@
 <section class="section" aria-labelledby="editTitle">
   <div class="shell section-heading reveal">
     <div><p class="eyebrow">From the studio</p><h2 class="display" id="editTitle">The Odd <em>Edit</em></h2></div>
-    <div class="tabs" role="tablist" aria-label="Product edits"><button class="tab-button is-active" type="button">New Arrivals</button><button class="tab-button" type="button">Bestsellers</button><button class="tab-button" type="button">Ready to Ship</button></div>
+    <div class="tabs" role="tablist" aria-label="Product edits"><button class="tab-button is-active" type="button" role="tab" data-home-tab="new" aria-selected="true">New Arrivals</button><button class="tab-button" type="button" role="tab" data-home-tab="best" aria-selected="false">Bestsellers</button><button class="tab-button" type="button" role="tab" data-home-tab="ready" aria-selected="false">Ready to Ship</button></div>
   </div>
   {% assign source_products = 'Char Bagh Kurta Set|product-char-bagh-kurta-set.jpg|₹ 59,500,Pakeezah Kurta Set|product-pakeezah-kurta-set.jpg|₹ 59,500,Tarini Kurta Set|product-tarini-kurta-set.jpg|₹ 27,900,Padmini Dress|product-padmini-dress.jpg|₹ 24,500,Tara Sitara Skirt|product-tara-sitara-skirt.jpg|₹ 24,500,Shwet Pankh Dress|product-shwet-pankh-dress.jpg|₹ 24,900,Son Champa Kurta Set|product-son-champa-kurta-set.jpg|₹ 66,500,Aprajita Kurta Set|product-aprajita-kurta-set.jpg|₹ 38,500,Aprajita Odhani|product-aprajita-odhani.jpg|₹ 25,900,Phulwari Set|product-phulwari-set.jpg|₹ 47,900,Kamal Nayan Kurta Set|product-kamal-nayan-kurta-set.jpg|₹ 41,500,Son Chidaiya Set|product-son-chidaiya-set.jpg|₹ 41,500,Sunhari Kurta Set|product-sunhari-kurta-set.jpg|₹ 38,500,Fitoor Set|product-fitoor-set.jpg|₹ 46,500,Fitoor Skirt|product-fitoor-skirt.jpg|₹ 24,500,Fitoor Shirt|product-fitoor-shirt.jpg|₹ 19,500,Beaded Necklace|jewellery-beaded-necklace.jpg|₹ 8,500,Celestial Signet Ring|jewellery-celestial-ring.jpg|₹ 5,500,Luna Ring|jewellery-luna-ring.jpg|₹ 4,500,Cottage Blossom Bag|bag-cottage-blossom.jpg|₹ 9,500,Vanilla Bloom Bag|bag-vanilla-bloom.jpg|₹ 25,900' | split: ',' %}
   {% assign storefront_products = collections['all'].products %}
-  <div class="product-rail">
+  <div class="product-rail" id="homeProductRail" role="tabpanel" aria-live="polite">
     {% if storefront_products.size > 0 %}
       {% for product in storefront_products limit: 50 %}
         {% render 'product-card', product: product %}
@@ -55,7 +55,7 @@
     {% else %}
       {% for item in source_products %}
         {% assign pair = item | split: '|' %}
-        <article class="product-card source-product-card">
+        <article class="product-card source-product-card reveal" data-oto-groups="new best ready">
           <div class="product-card__media">
             <img src="{{ pair[1] | file_url }}" alt="{{ pair[0] | escape }}" loading="lazy" width="1200" height="1600">
           </div>
@@ -69,7 +69,7 @@
 
 <section class="collection-story reveal" aria-labelledby="collectionStoryTitle"><div class="story-media"><img src="{{ 'col-1.jpg' | file_url }}" alt="Ode to India campaign portrait" loading="lazy" width="1200" height="1600"></div><div class="story-copy"><div><p class="eyebrow">Collection</p><h2 class="display" id="collectionStoryTitle">Ode to <em>India</em></h2><p>Heirloom-ready pieces shaped by handwork, memory, and ceremonial ease.</p><a class="button" href="{{ routes.collections_url }}">Explore collection</a></div></div></section>
 
-<section class="focus-split reveal" aria-label="Featured piece and campaign film"><div class="focus-product-panel"><p class="eyebrow">Featured piece</p><div class="focus-product-card"><img src="{{ 'product-char-bagh-kurta-set.jpg' | file_url }}" alt="Char Bagh Kurta Set" loading="lazy" width="1200" height="1600"><h3>Char Bagh Kurta Set</h3><p>A silk bib kurta set where cross stitch meets bugle-bead light.</p></div></div><div class="focus-video"><video muted loop playsinline preload="none" poster="{{ 'collection-2-square-poster.jpg' | file_url }}" data-autoplay-video aria-label="Ode to Odd collection film"><source src="{{ 'collection-2-square.mp4' | file_url }}" type="video/mp4"></video></div></section>
+<section class="focus-split reveal" aria-label="Featured piece and campaign film"><div class="focus-product-panel"><div class="focus-product-head"><p class="eyebrow">Featured piece</p><div class="focus-controls"><button class="icon-button" id="focusPrev" type="button" aria-label="Previous featured piece">←</button><button class="icon-button" id="focusNext" type="button" aria-label="Next featured piece">→</button></div></div><div class="focus-product-card" id="focusProduct" aria-live="polite" data-focus-index="0"><article class="focus-product-slide is-active" data-focus-slide><img src="{{ 'product-char-bagh-kurta-set.jpg' | file_url }}" alt="Char Bagh Kurta Set" loading="lazy" width="1200" height="1600"><h3>Char Bagh Kurta Set</h3><p>A silk bib kurta set where cross stitch meets bugle-bead light.</p></article><article class="focus-product-slide" data-focus-slide hidden><img src="{{ 'product-pakeezah-kurta-set.jpg' | file_url }}" alt="Pakeezah Kurta Set" loading="lazy" width="1200" height="1600"><h3>Pakeezah Kurta Set</h3><p>A garden worked patiently into silk.</p></article><article class="focus-product-slide" data-focus-slide hidden><img src="{{ 'product-phulwari-set.jpg' | file_url }}" alt="Phulwari Set" loading="lazy" width="1200" height="1600"><h3>Phulwari Set</h3><p>Printed ease, hand-finished for everyday ceremony.</p></article></div></div><div class="focus-video"><video muted loop playsinline preload="none" poster="{{ 'collection-2-square-poster.jpg' | file_url }}" data-autoplay-video aria-label="Ode to Odd collection film"><source src="{{ 'collection-2-square.mp4' | file_url }}" type="video/mp4"></video></div></section>
 
 <section class="section jewellery-feature" aria-labelledby="jewelleryTitle">
   <div class="shell jewellery-layout">
@@ -103,12 +103,12 @@
       <h2 class="display" id="peopleTitle">People of <em>Ode to Odd</em></h2>
     </div>
     <div class="tabs" role="tablist" aria-label="People of Ode to Odd">
-      <button class="tab-button is-active" type="button" role="tab">Celebrities &amp; Creators</button>
-      <button class="tab-button" type="button" role="tab">Real People</button>
-      <button class="tab-button" type="button" role="tab">Influencers</button>
+      <button class="tab-button is-active" type="button" role="tab" data-community-tab="creators" aria-selected="true">Celebrities &amp; Creators</button>
+      <button class="tab-button" type="button" role="tab" data-community-tab="people" aria-selected="false">Real People</button>
+      <button class="tab-button" type="button" role="tab" data-community-tab="influencers" aria-selected="false">Influencers</button>
     </div>
   </div>
-  <div class="shell community-grid" role="tabpanel" aria-live="polite">
+  <div class="shell community-grid" id="communityGrid" role="tabpanel" aria-live="polite">
     {% assign community = 'The Campaign Muse|Artist and collaborator|col-1.jpg|Ode to India,A Study in Red|Creator portrait|collection-2-square-poster.jpg|Modern Indian,In Her Own Light|Campaign diary|reel-2-poster.jpg|Once Upon a Time,An Ode Worn|From the community|char-bagh-05.jpg|Char Bagh,A Sunday Ritual|From the community|product-phulwari-set.jpg|Phulwari,Quiet Celebration|From the community|product-padmini-dress.jpg|Padmini' | split: ',' %}
     {% for item in community %}
       {% assign pair = item | split: '|' %}
@@ -128,7 +128,7 @@
     </div>
     <p>Five passing moments from the campaign, each connected to the piece in frame.</p>
   </div>
-  <div class="shell reels-grid">
+  <div class="shell reels-grid" id="reelsGrid">
     {% assign reels = 'reel-1.mp4|reel-1-poster.jpg|Char Bagh Kurta Set,reel-2.mp4|reel-2-poster.jpg|Padmini Dress,reel-3.mp4|reel-3-poster.jpg|Aprajita Odhani,reel-4.mp4|reel-4-poster.jpg|Fitoor Skirt,reel-5.mp4|reel-5-poster.jpg|Fitoor Shirt' | split: ',' %}
     {% for item in reels %}
       {% assign pair = item | split: '|' %}
