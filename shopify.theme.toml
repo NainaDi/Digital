@@ -1,0 +1,5 @@
+# Shopify CLI environment configuration for this theme.
+# Secrets are intentionally not stored here. Shopify CLI reads the Theme Access
+# password/Admin API token from SHOPIFY_CLI_THEME_TOKEN in the Codex Cloud env.
+[environments.codex]
+store = "codex-mcp-2.myshopify.com"

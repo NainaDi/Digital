@@ -1,6 +1,23 @@
-<section class="cart-page"><h1>{{ 'templates.cart.cart' | t }}</h1>{% if cart.empty? %}<p>{{ 'sections.cart.empty' | t }}</p><a class="button" href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>{% else %}<form action="{{ routes.cart_url }}" method="post"><div class="cart-items">{% for item in cart.items %}<div class="cart-item">{% if item.image %}{{ item.image | image_url: width: 180 | image_tag: loading: 'lazy' }}{% endif %}<div><a href="{{ item.url }}">{{ item.product.title }}</a><p>{{ item.final_price | money }}</p><input type="number" name="updates[]" value="{{ item.quantity }}" min="0"></div><strong>{{ item.final_line_price | money }}</strong></div>{% endfor %}</div><p class="cart-total">{{ cart.total_price | money }}</p><button class="button" type="submit" name="update">{{ 'sections.cart.update' | t }}</button><button class="button" name="checkout">{{ 'sections.cart.checkout' | t }}</button></form>{% endif %}</section>
-{% schema %}
-{
-  "name": "Main cart"
-}
-{% endschema %}
+<main class="shell cart-page">
+  <header class="cart-page-header reveal">
+    <div><p class="eyebrow">Your selection</p><h1 class="display">The Cart</h1></div>
+    <span class="collection-count">{{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %}</span>
+  </header>
+  {% if cart.empty? %}
+    <div class="empty-state"><div><p class="eyebrow">Your cart is quiet</p><h2 class="display">There is room for a story.</h2><p>Explore handworked pieces and small objects from the studio.</p><a class="button" href="{{ routes.all_products_collection_url }}">Shop all</a></div></div>
+  {% else %}
+    <form action="{{ routes.cart_url }}" method="post" class="cart-page-layout">
+      <section class="cart-page-items" aria-label="Cart items">
+        {% for item in cart.items %}
+          <article class="cart-line">
+            <a class="cart-thumb" href="{{ item.url }}">{% if item.image %}{{ item.image | image_url: width: 320 | image_tag: loading: 'lazy', alt: item.product.title }}{% endif %}</a>
+            <div class="cart-line-copy"><h3><a href="{{ item.url }}">{{ item.product.title }}</a></h3><p class="cart-meta">{{ item.variant.title }}</p><div class="cart-summary-row"><span>{{ item.final_price | money }}</span></div><div class="cart-line-actions"><label class="quantity"><span class="sr-only">Quantity</span><input type="number" name="updates[]" value="{{ item.quantity }}" min="0"></label><a class="remove-line" href="{{ item.url_to_remove }}">Remove</a></div></div>
+            <strong>{{ item.final_line_price | money }}</strong>
+          </article>
+        {% endfor %}
+      </section>
+      <aside class="cart-summary" aria-label="Order summary"><h2>Summary</h2><div class="cart-summary-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div><div class="cart-summary-row"><span>Shipping</span><span>Calculated at checkout</span></div><div class="cart-summary-row total"><span>Total</span><strong>{{ cart.total_price | money }}</strong></div><button class="button-soft" type="submit" name="update">Update cart</button><button class="button-solid" name="checkout">Proceed to Checkout</button></aside>
+    </form>
+  {% endif %}
+</main>
+{% schema %}{"name":"Main cart"}{% endschema %}

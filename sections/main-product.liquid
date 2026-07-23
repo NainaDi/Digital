@@ -1,6 +1,28 @@
-<section class="product-detail"><div class="product-gallery">{% for media in product.media %}{{ media | image_url: width: 900 | image_tag: loading: 'lazy' }}{% else %}<div class="productImage">01</div>{% endfor %}</div><div class="product-info"><p class="eyebrow">{{ product.vendor }}</p><h1>{{ product.title }}</h1><p class="product-price">{% render 'price', product: product %}</p><div class="rte">{{ product.description }}</div>{% form 'product', product %}<select name="id">{% for variant in product.variants %}<option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>{{ variant.title }} - {{ variant.price | money }}</option>{% endfor %}</select><button class="button" type="submit">{{ 'products.product.add_to_cart' | t }}</button>{% endform %}</div></section>
-{% schema %}
-{
-  "name": "Main product"
-}
-{% endschema %}
+<main>
+  <section class="pdp-layout" aria-label="Product details">
+    <div class="pdp-gallery" aria-label="Product gallery">
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}{{ media | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'pdp-gallery-image' }}{% else %}{{ media | media_tag: image_size: '1200x' }}{% endif %}
+      {% else %}<div class="productImage">Ode</div>{% endfor %}
+    </div>
+    <div class="pdp-info">
+      <div class="breadcrumbs"><a href="{{ routes.root_url }}">Home</a> · <a href="{{ routes.all_products_collection_url }}">Collection</a> · {{ product.title }}</div>
+      <div class="pdp-title-row"><h1 class="pdp-title">{{ product.title }}</h1><button class="share-button" type="button" onclick="navigator.share && navigator.share({title: '{{ product.title | escape }}', url: '{{ shop.url }}{{ product.url }}'})">Share</button></div>
+      <div class="pdp-price money">{% render 'price', product: product %}</div>
+      {% if product.description != blank %}<div class="pdp-poem rte">{{ product.description }}</div>{% endif %}
+      {% form 'product', product, class: 'pdp-form' %}
+        <div id="productOptions">
+          {% unless product.has_only_default_variant %}
+            <label class="option-label" for="ProductVariantSelect">Select options</label>
+            <select id="ProductVariantSelect" name="id">{% for variant in product.variants %}<option value="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>{{ variant.title }} - {{ variant.price | money }}</option>{% endfor %}</select>
+          {% else %}<input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">{% endunless %}
+        </div>
+        <div class="pdp-actions"><button class="button-solid" type="submit" {% unless product.available %}disabled{% endunless %}>{% if product.available %}Add to Cart{% else %}Sold Out{% endif %}</button></div>
+      {% endform %}
+      <div class="pdp-delivery"><div class="dispatch-note"><span>Made in small batches and dispatched with atelier care.</span></div><p class="pdp-assistance">Need a faster delivery? <a href="https://wa.me/916287729291" target="_blank" rel="noopener">WhatsApp our atelier</a></p></div>
+      <div class="pdp-usps"><article><h3>Handworked</h3><p>Craft-led finishes and expressive details.</p></article><article><h3>Small batch</h3><p>Created slowly and intentionally.</p></article><article><h3>Made in India</h3><p>Rooted in Indian craft traditions.</p></article></div>
+    </div>
+  </section>
+  <section class="section recommendations" aria-labelledby="recommendationsTitle"><div class="shell section-heading reveal"><div><p class="eyebrow">Continue the story</p><h2 class="display" id="recommendationsTitle">You May Also <em>Love</em></h2></div></div><div class="product-rail">{% for product in collections.all.products limit: 8 %}{% render 'product-card', product: product %}{% endfor %}</div></section>
+</main>
+{% schema %}{"name":"Main product"}{% endschema %}

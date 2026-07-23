@@ -2,7 +2,11 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "preview": "vite --host 0.0.0.0",
-    "check": "vite --host 127.0.0.1 --port 4173"
+    "check": "vite --host 127.0.0.1 --port 4173",
+    "shopify:env": "node scripts/check-shopify-env.mjs",
+    "shopify:list": "npm run shopify:env && npx --yes @shopify/cli@3.94.3 theme list --environment codex",
+    "shopify:dev": "npm run shopify:env && npx --yes @shopify/cli@3.94.3 theme dev --environment codex",
+    "shopify:push": "npm run shopify:env && npx --yes @shopify/cli@3.94.3 theme push --environment codex"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
