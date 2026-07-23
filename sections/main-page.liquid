@@ -1,6 +1,17 @@
-<section class="story"><h1>{{ page.title | default: shop.name }}</h1><div class="rte">{{ page.content }}</div></section>
-{% schema %}
-{
-  "name": "Main page"
-}
-{% endschema %}
+{% assign page_handle = page.handle | default: request.path | split: '/' | last %}
+{% if page_handle == 'our-story' %}
+  <main class="editorial-page">
+    <header class="editorial-hero reveal"><p class="eyebrow">The garden of love</p><h1 class="display">Our <em>Story</em></h1><p>A story rooted in cross stitch, carried from Ranchi into an evolving language of flowers.</p><div class="stitch-motif" aria-hidden="true"><span>×</span><span>×</span><span>×</span><span>×</span><span>×</span></div></header>
+    <section class="editorial-panels shell"><figure class="reveal"><img src="{{ 'roots.jpg' | file_url }}" alt="Map tracing Ode to Odd from its roots" loading="lazy" width="1200" height="1600"><figcaption>Cross stitch first found us in Ranchi.</figcaption></figure><figure class="reveal"><img src="{{ 'live-our-story-full.png' | file_url }}" alt="Ode to Odd story artwork" loading="lazy" width="1200" height="1600"><figcaption>Patient handwork became an evolving language of flowers.</figcaption></figure><figure class="reveal"><img src="{{ 'beauty-imperfect-garland.png' | file_url }}" alt="Floral garland artwork" loading="lazy" width="900" height="520"><figcaption>For the unique, the uneven, and the beautifully odd.</figcaption></figure></section>
+    <section class="editorial-next reveal"><p class="script">from the studio</p><h2 class="display">Beauty lives in the <em>particular</em>.</h2><a class="button" href="/pages/designers-note">Read the designer's note</a></section>
+  </main>
+{% elsif page_handle == 'designers-note' %}
+  <main class="editorial-page designers-note-page">
+    <header class="editorial-hero reveal"><p class="eyebrow">From Shreya and Priyal</p><h1 class="display">Designer's <em>Note</em></h1><p>We have always sought beauty in every little thing. It has been the most powerful force behind our work.</p></header>
+    <section class="shell editorial-note reveal"><img src="{{ 'designers-note-garland-centered.png' | file_url }}" alt="Ode to Odd floral artwork" loading="lazy" width="900" height="520"><div><p>Through making, we have learnt that imperfection is the truest paradigm of beauty.</p><p>Our mission is to create beautiful, quiet things that embody the odd and outnumbered: pieces that become part of you, gather meaning, and carry a meditative energy over time.</p><p>Here is to shifting the perspective of beauty, one considered imperfection at a time.</p><p class="script">Love &amp; Light,<br>Shreya &amp; Priyal</p></div></section>
+    <section class="editorial-next reveal"><p class="script">cross by cross</p><h2 class="display">Follow the story to <em>its roots</em>.</h2><a class="button" href="/pages/our-story">Our story</a></section>
+  </main>
+{% else %}
+  <main class="page-hero shell"><p class="eyebrow">{{ shop.name }}</p><h1 class="display">{{ page.title | default: shop.name }}</h1><div class="rte">{{ page.content }}</div></main>
+{% endif %}
+{% schema %}{"name":"Main page"}{% endschema %}
