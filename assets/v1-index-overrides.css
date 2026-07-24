@@ -1,0 +1,121 @@
+/* V1 index.html homepage parity. Keep this separate from theme.css so the ZIP-derived markup can use its original class names. */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  display: grid;
+  place-items: center;
+  color: var(--paper-soft);
+  overflow: hidden;
+}
+
+.hero video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #7d3929;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(30, 16, 12, .2), rgba(30, 16, 12, .42));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 13vw, 13rem);
+  margin: 0;
+  text-shadow: 0 20px 70px rgba(0, 0, 0, .32);
+}
+
+.hero .eyebrow {
+  justify-content: center;
+  color: #ffe2c8;
+}
+
+.hero-label {
+  position: absolute;
+  z-index: 1;
+  right: 24px;
+  bottom: 22px;
+  font-size: .78rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.story-copy-inner,
+.roots-copy > div,
+.craft-copy > div {
+  max-width: 520px;
+}
+
+.focus-product-head,
+.focus-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.focus-controls {
+  justify-content: flex-end;
+}
+
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-soft);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.icon-button svg,
+.icon-button i,
+.text-link svg,
+.text-link i {
+  width: 18px;
+  height: 18px;
+}
+
+.focus-product-slide[hidden] {
+  display: none;
+}
+
+.reel-card a {
+  display: block;
+  color: inherit;
+}
+
+.reel-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px 16px;
+  color: #ead6c5;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 82vh;
+  }
+
+  .hero-label {
+    left: 20px;
+    right: 20px;
+    text-align: center;
+  }
+}
