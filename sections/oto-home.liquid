@@ -1,15 +1,14 @@
-<section class="oto-hero" aria-label="Once Upon a Time campaign">
+<section class="hero" aria-label="Once Upon a Time campaign">
   <video autoplay muted loop playsinline preload="metadata" poster="{{ 'hero-banner-poster.jpg' | file_url }}" data-autoplay-video>
     <source src="{{ 'hero-banner-web.webm' | file_url }}" type="video/webm">
     <source src="{{ 'hero-banner-web.mp4' | file_url }}" type="video/mp4">
-    <source src="{{ 'hero-banner.mp4' | file_url }}" type="video/mp4">
   </video>
-  <div class="oto-hero__content">
-    <p class="eyebrow">Chapter II · Summer 2026</p>
+  <div class="hero-content">
+    <p class="eyebrow">Chapter II &middot; Summer 2026</p>
     <h1>Once Upon <em>a</em> Time</h1>
-    <a class="button" href="{{ routes.collections_url }}">Discover</a>
+    <a class="button" href="{{ routes.all_products_collection_url }}?handle=collections">Discover</a>
   </div>
-  <span class="oto-hero__label">Campaign film · Once Upon a Time</span>
+  <span class="hero-label">Campaign film &middot; Once Upon a Time</span>
 </section>
 
 <section class="section manifesto reveal" aria-labelledby="manifestoTitle">
@@ -18,34 +17,53 @@
     <h2 class="display" id="manifestoTitle">Beauty, in the imperfect.</h2>
     <p>For the unique and the uneven; for garments that carry the memory of the hands that made them. Ode to Odd shapes Indian craft into pieces with room for a life of their own.</p>
     <img class="manifesto-garland" src="{{ 'beauty-imperfect-garland.png' | file_url }}" alt="" aria-hidden="true" loading="lazy" width="420" height="220">
-    <div class="stitch-motif" aria-hidden="true"><span>×</span><span>×</span><span>×</span><span>×</span><span>×</span></div>
+    <div class="stitch-motif" aria-hidden="true"><span>&times;</span><span>&times;</span><span>&times;</span><span>&times;</span><span>&times;</span></div>
   </div>
 </section>
 
 <section class="category-wrap" aria-labelledby="categoryTitle">
   <div class="shell section-heading reveal">
-    <div><p class="eyebrow">Categories</p><h2 class="display" id="categoryTitle">Find your <em>form</em></h2></div>
+    <div>
+      <p class="eyebrow">Categories</p>
+      <h2 class="display" id="categoryTitle">Find your <em>form</em></h2>
+    </div>
     <p>Drawn as an idea before it is shaped in cloth. Browse by the silhouette that feels most like you.</p>
   </div>
   <div class="horizontal-rail" id="categoryRail" aria-label="Product categories">
-    {% assign category_images = 'Dresses|category-dresses.jpg,Kurta Sets|category-kurta-sets.jpg,Co-ord Sets|category-coord-sets.jpg,Shirts|category-shirts.jpg,Skirts|category-skirts.jpg,Trousers|category-trousers.jpg' | split: ',' %}
-    {% for item in category_images %}{% assign pair = item | split: '|' %}
-      <a class="category-tile reveal" href="{{ routes.collections_url }}"><img src="{{ pair[1] | file_url }}" alt="{{ pair[0] | escape }}" loading="lazy" width="1200" height="1600"><span>{{ pair[0] }}</span></a>
+    {% assign category_images = 'Dresses|category-dresses.jpg|dresses,Kurta Sets|category-kurta-sets.jpg|kurta-sets,Co-ord Sets|category-coord-sets.jpg|co-ord-sets,Shirts|category-shirts.jpg|shirts,Skirts|category-skirts.jpg|skirts,Trousers|category-trousers.jpg|trousers' | split: ',' %}
+    {% for item in category_images %}
+      {% assign pair = item | split: '|' %}
+      <a class="category-tile reveal" href="{{ routes.all_products_collection_url }}?handle={{ pair[2] }}">
+        <img src="{{ pair[1] | file_url }}" alt="{{ pair[0] | escape }}" loading="lazy" width="1200" height="1600">
+        <span>{{ pair[0] }}</span>
+      </a>
     {% endfor %}
   </div>
 </section>
 
 <section class="feature-banner reveal" aria-labelledby="beautyTitle">
   <img src="{{ 'flying.png' | file_url }}" alt="A pleated Ode to Odd dress drifting through a blue sky" loading="lazy" width="1200" height="1600">
-  <div class="feature-banner-copy"><p class="eyebrow">An odd little world</p><h2 class="display" id="beautyTitle">A Thing of <em>Beauty</em></h2><p>Handworked pieces for days that refuse to be ordinary.</p><a class="button" href="{{ routes.all_products_collection_url }}">Enter the chapter</a></div>
+  <div class="feature-banner-copy">
+    <p class="eyebrow">An odd little world</p>
+    <h2 class="display" id="beautyTitle">A Thing of <em>Beauty</em></h2>
+    <p>Handworked pieces for days that refuse to be ordinary.</p>
+    <a class="button" href="{{ routes.all_products_collection_url }}?handle=collections">Enter the chapter</a>
+  </div>
 </section>
 
 <section class="section" aria-labelledby="editTitle">
   <div class="shell section-heading reveal">
-    <div><p class="eyebrow">From the studio</p><h2 class="display" id="editTitle">The Odd <em>Edit</em></h2></div>
-    <div class="tabs" role="tablist" aria-label="Product edits"><button class="tab-button is-active" type="button" role="tab" data-home-tab="new" aria-selected="true">New Arrivals</button><button class="tab-button" type="button" role="tab" data-home-tab="best" aria-selected="false">Bestsellers</button><button class="tab-button" type="button" role="tab" data-home-tab="ready" aria-selected="false">Ready to Ship</button></div>
+    <div>
+      <p class="eyebrow">From the studio</p>
+      <h2 class="display" id="editTitle">The Odd <em>Edit</em></h2>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Product edits">
+      <button class="tab-button is-active" type="button" role="tab" data-home-tab="new" aria-selected="true">New Arrivals</button>
+      <button class="tab-button" type="button" role="tab" data-home-tab="best" aria-selected="false">Bestsellers</button>
+      <button class="tab-button" type="button" role="tab" data-home-tab="ready" aria-selected="false">Ready to Ship</button>
+    </div>
   </div>
-  {% assign source_products = 'Char Bagh Kurta Set|product-char-bagh-kurta-set.jpg|₹ 59,500,Pakeezah Kurta Set|product-pakeezah-kurta-set.jpg|₹ 59,500,Tarini Kurta Set|product-tarini-kurta-set.jpg|₹ 27,900,Padmini Dress|product-padmini-dress.jpg|₹ 24,500,Tara Sitara Skirt|product-tara-sitara-skirt.jpg|₹ 24,500,Shwet Pankh Dress|product-shwet-pankh-dress.jpg|₹ 24,900,Son Champa Kurta Set|product-son-champa-kurta-set.jpg|₹ 66,500,Aprajita Kurta Set|product-aprajita-kurta-set.jpg|₹ 38,500,Aprajita Odhani|product-aprajita-odhani.jpg|₹ 25,900,Phulwari Set|product-phulwari-set.jpg|₹ 47,900,Kamal Nayan Kurta Set|product-kamal-nayan-kurta-set.jpg|₹ 41,500,Son Chidaiya Set|product-son-chidaiya-set.jpg|₹ 41,500,Sunhari Kurta Set|product-sunhari-kurta-set.jpg|₹ 38,500,Fitoor Set|product-fitoor-set.jpg|₹ 46,500,Fitoor Skirt|product-fitoor-skirt.jpg|₹ 24,500,Fitoor Shirt|product-fitoor-shirt.jpg|₹ 19,500,Beaded Necklace|jewellery-beaded-necklace.jpg|₹ 8,500,Celestial Signet Ring|jewellery-celestial-ring.jpg|₹ 5,500,Luna Ring|jewellery-luna-ring.jpg|₹ 4,500,Cottage Blossom Bag|bag-cottage-blossom.jpg|₹ 9,500,Vanilla Bloom Bag|bag-vanilla-bloom.jpg|₹ 25,900' | split: ',' %}
+  {% assign source_products = 'Char Bagh Kurta Set|product-char-bagh-kurta-set.jpg|₹ 59,500|new best ready,Pakeezah Kurta Set|product-pakeezah-kurta-set.jpg|₹ 59,500|new best,Tarini Kurta Set|product-tarini-kurta-set.jpg|₹ 27,900|new ready,Padmini Dress|product-padmini-dress.jpg|₹ 24,500|new best,Tara Sitara Skirt|product-tara-sitara-skirt.jpg|₹ 24,500|new ready,Shwet Pankh Dress|product-shwet-pankh-dress.jpg|₹ 24,900|new,Son Champa Kurta Set|product-son-champa-kurta-set.jpg|₹ 66,500|best,Aprajita Kurta Set|product-aprajita-kurta-set.jpg|₹ 38,500|ready,Aprajita Odhani|product-aprajita-odhani.jpg|₹ 25,900|ready,Phulwari Set|product-phulwari-set.jpg|₹ 47,900|best ready,Kamal Nayan Kurta Set|product-kamal-nayan-kurta-set.jpg|₹ 41,500|best,Son Chidaiya Set|product-son-chidaiya-set.jpg|₹ 41,500|new,Sunhari Kurta Set|product-sunhari-kurta-set.jpg|₹ 38,500|ready,Fitoor Set|product-fitoor-set.jpg|₹ 46,500|new best,Fitoor Skirt|product-fitoor-skirt.jpg|₹ 24,500|ready,Fitoor Shirt|product-fitoor-shirt.jpg|₹ 19,500|new,Beaded Necklace|jewellery-beaded-necklace.jpg|₹ 8,500|best,Celestial Signet Ring|jewellery-celestial-ring.jpg|₹ 5,500|ready,Luna Ring|jewellery-luna-ring.jpg|₹ 4,500|new,Cottage Blossom Bag|bag-cottage-blossom.jpg|₹ 9,500|best,Vanilla Bloom Bag|bag-vanilla-bloom.jpg|₹ 25,900|ready' | split: ',' %}
   {% assign storefront_products = collections['all'].products %}
   <div class="product-rail" id="homeProductRail" role="tabpanel" aria-live="polite">
     {% if storefront_products.size > 0 %}
@@ -55,7 +73,7 @@
     {% else %}
       {% for item in source_products %}
         {% assign pair = item | split: '|' %}
-        <article class="product-card source-product-card reveal" data-oto-groups="new best ready">
+        <article class="product-card source-product-card reveal" data-oto-groups="{{ pair[3] }}">
           <div class="product-card__media">
             <img src="{{ pair[1] | file_url }}" alt="{{ pair[0] | escape }}" loading="lazy" width="1200" height="1600">
           </div>
@@ -67,9 +85,48 @@
   </div>
 </section>
 
-<section class="collection-story reveal" aria-labelledby="collectionStoryTitle"><div class="story-media"><img src="{{ 'col-1.jpg' | file_url }}" alt="Ode to India campaign portrait" loading="lazy" width="1200" height="1600"></div><div class="story-copy"><div><p class="eyebrow">Collection</p><h2 class="display" id="collectionStoryTitle">Ode to <em>India</em></h2><p>Heirloom-ready pieces shaped by handwork, memory, and ceremonial ease.</p><a class="button" href="{{ routes.collections_url }}">Explore collection</a></div></div></section>
+<section class="collection-story reveal" aria-labelledby="collectionStoryTitle">
+  <div class="story-media"><img src="{{ 'col-1.jpg' | file_url }}" alt="Ode to India campaign portrait" loading="lazy" width="1200" height="1600"></div>
+  <div class="story-copy">
+    <div class="story-copy-inner">
+      <p class="eyebrow">Collection</p>
+      <h2 class="display" id="collectionStoryTitle">Ode to <em>India</em></h2>
+      <p>Heirloom-ready pieces shaped by handwork, memory, and ceremonial ease.</p>
+      <a class="button" href="{{ routes.all_products_collection_url }}?handle=collections">Explore collection</a>
+    </div>
+  </div>
+</section>
 
-<section class="focus-split reveal" aria-label="Featured piece and campaign film"><div class="focus-product-panel"><div class="focus-product-head"><p class="eyebrow">Featured piece</p><div class="focus-controls"><button class="icon-button" id="focusPrev" type="button" aria-label="Previous featured piece">←</button><button class="icon-button" id="focusNext" type="button" aria-label="Next featured piece">→</button></div></div><div class="focus-product-card" id="focusProduct" aria-live="polite" data-focus-index="0"><article class="focus-product-slide is-active" data-focus-slide><img src="{{ 'product-char-bagh-kurta-set.jpg' | file_url }}" alt="Char Bagh Kurta Set" loading="lazy" width="1200" height="1600"><h3>Char Bagh Kurta Set</h3><p>A silk bib kurta set where cross stitch meets bugle-bead light.</p></article><article class="focus-product-slide" data-focus-slide hidden><img src="{{ 'product-pakeezah-kurta-set.jpg' | file_url }}" alt="Pakeezah Kurta Set" loading="lazy" width="1200" height="1600"><h3>Pakeezah Kurta Set</h3><p>A garden worked patiently into silk.</p></article><article class="focus-product-slide" data-focus-slide hidden><img src="{{ 'product-phulwari-set.jpg' | file_url }}" alt="Phulwari Set" loading="lazy" width="1200" height="1600"><h3>Phulwari Set</h3><p>Printed ease, hand-finished for everyday ceremony.</p></article></div></div><div class="focus-video"><video muted loop playsinline preload="none" poster="{{ 'collection-2-square-poster.jpg' | file_url }}" data-autoplay-video aria-label="Ode to Odd collection film"><source src="{{ 'collection-2-square.mp4' | file_url }}" type="video/mp4"></video></div></section>
+<section class="focus-split reveal" aria-label="Featured piece and campaign film">
+  <div class="focus-product-panel">
+    <div class="focus-product-head">
+      <p class="eyebrow">Featured piece</p>
+      <div class="focus-controls">
+        <button class="icon-button" id="focusPrev" type="button" aria-label="Previous featured piece"><i data-lucide="arrow-left" aria-hidden="true"></i></button>
+        <button class="icon-button" id="focusNext" type="button" aria-label="Next featured piece"><i data-lucide="arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <div class="focus-product-card" id="focusProduct" aria-live="polite" data-focus-index="0">
+      <article class="focus-product-slide is-active" data-focus-slide>
+        <img src="{{ 'product-char-bagh-kurta-set.jpg' | file_url }}" alt="Char Bagh Kurta Set" loading="lazy" width="1200" height="1600">
+        <div class="focus-product-info"><h3>Char Bagh Kurta Set</h3><p>A silk bib kurta set where cross stitch meets bugle-bead light.</p></div>
+      </article>
+      <article class="focus-product-slide" data-focus-slide hidden>
+        <img src="{{ 'product-pakeezah-kurta-set.jpg' | file_url }}" alt="Pakeezah Kurta Set" loading="lazy" width="1200" height="1600">
+        <div class="focus-product-info"><h3>Pakeezah Kurta Set</h3><p>A garden worked patiently into silk.</p></div>
+      </article>
+      <article class="focus-product-slide" data-focus-slide hidden>
+        <img src="{{ 'product-phulwari-set.jpg' | file_url }}" alt="Phulwari Set" loading="lazy" width="1200" height="1600">
+        <div class="focus-product-info"><h3>Phulwari Set</h3><p>Printed ease, hand-finished for everyday ceremony.</p></div>
+      </article>
+    </div>
+  </div>
+  <div class="focus-video">
+    <video muted loop playsinline preload="none" poster="{{ 'collection-2-square-poster.jpg' | file_url }}" data-autoplay-video aria-label="Ode to Odd collection film">
+      <source src="{{ 'collection-2-square.mp4' | file_url }}" type="video/mp4">
+    </video>
+  </div>
+</section>
 
 <section class="section jewellery-feature" aria-labelledby="jewelleryTitle">
   <div class="shell jewellery-layout">
@@ -77,9 +134,9 @@
       <p class="eyebrow">Jewellery &amp; Bags</p>
       <h2 class="display" id="jewelleryTitle">Small Objects,<br><em>Lasting Stories</em></h2>
       <p>Cast forms, counted beadwork, and bags made to gather marks, memories, and conversation.</p>
-      <a class="text-link" href="{{ routes.all_products_collection_url }}">Explore accessories <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="{{ routes.all_products_collection_url }}?handle=shop">Explore accessories <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
     </div>
-    <div class="jewellery-grid">
+    <div class="jewellery-grid" id="jewelleryGrid">
       {% assign accessories = 'Beaded Necklace|jewellery-beaded-necklace.jpg|₹ 8,500,Celestial Signet Ring|jewellery-celestial-ring.jpg|₹ 5,500,Luna Ring|jewellery-luna-ring.jpg|₹ 4,500,Cottage Blossom Bag|bag-cottage-blossom.jpg|₹ 9,500,Vanilla Bloom Bag|bag-vanilla-bloom.jpg|₹ 25,900' | split: ',' %}
       {% for item in accessories %}
         {% assign pair = item | split: '|' %}
@@ -92,9 +149,36 @@
   </div>
 </section>
 
-<section class="roots-feature reveal" aria-labelledby="rootsTitle"><div class="roots-media"><img src="{{ 'roots.jpg' | file_url }}" alt="Map tracing Ode to Odd roots" loading="lazy" width="1200" height="1600"></div><div class="roots-copy"><p class="eyebrow">Where the story began</p><h2 class="display" id="rootsTitle">Our <em>Roots</em></h2><p>Cross stitch first found us in Ranchi. We carried its patient rhythm into every chapter that followed.</p><a class="button" href="/pages/our-story">Read our story</a></div></section>
+<section class="roots-feature reveal" aria-labelledby="rootsTitle">
+  <div class="roots-media"><img src="{{ 'roots.jpg' | file_url }}" alt="Map tracing Ode to Odd from its roots in Ranchi to Patna and Siliguri" loading="lazy" width="1200" height="1600"></div>
+  <div class="roots-copy">
+    <div>
+      <p class="eyebrow">Where the story began</p>
+      <h2 class="display" id="rootsTitle">Our <em>Roots</em></h2>
+      <p>Cross stitch first found us in Ranchi. We carried its patient rhythm into every chapter that followed.</p>
+      <a class="button" href="{{ pages['our-story'].url | default: '/pages/our-story' }}">Read our story</a>
+    </div>
+  </div>
+</section>
 
-<section class="craft-feature reveal" aria-labelledby="craftTitle"><div class="craft-copy"><p class="eyebrow">Our craft</p><h2 class="display" id="craftTitle">Slow by <em>intention</em></h2><div class="craft-points"><article><span>01</span><h3>Counted by hand</h3><p>Cross stitch and beadwork are built one quiet mark at a time.</p></article><article><span>02</span><h3>Natural foundations</h3><p>Handwoven silks and cottons carry the character of their making.</p></article><article><span>03</span><h3>Made for keeping</h3><p>Small batches, careful finishes, and silhouettes with space to evolve.</p></article></div></div><div class="craft-video"><video muted loop playsinline preload="none" poster="{{ 'slow-by-intention-poster.jpg' | file_url }}" data-autoplay-video><source src="{{ 'slow-by-intention.mp4' | file_url }}" type="video/mp4"></video></div></section>
+<section class="craft-feature reveal" aria-labelledby="craftTitle">
+  <div class="craft-copy">
+    <div>
+      <p class="eyebrow">Our craft</p>
+      <h2 class="display" id="craftTitle">Slow by <em>intention</em></h2>
+      <div class="craft-points">
+        <article class="craft-point"><span>01</span><div><h3>Counted by hand</h3><p>Cross stitch and beadwork are built one quiet mark at a time.</p></div></article>
+        <article class="craft-point"><span>02</span><div><h3>Natural foundations</h3><p>Handwoven silks and cottons carry the character of their making.</p></div></article>
+        <article class="craft-point"><span>03</span><div><h3>Made for keeping</h3><p>Small batches, careful finishes, and silhouettes with space to evolve.</p></div></article>
+      </div>
+    </div>
+  </div>
+  <div class="craft-video">
+    <video muted loop playsinline preload="none" poster="{{ 'slow-by-intention-poster.jpg' | file_url }}" data-autoplay-video aria-label="Hand embroidery in the Ode to Odd studio">
+      <source src="{{ 'slow-by-intention.mp4' | file_url }}" type="video/mp4">
+    </video>
+  </div>
+</section>
 
 <section class="section" aria-labelledby="peopleTitle">
   <div class="shell section-heading reveal">
@@ -129,18 +213,45 @@
     <p>Five passing moments from the campaign, each connected to the piece in frame.</p>
   </div>
   <div class="shell reels-grid" id="reelsGrid">
-    {% assign reels = 'reel-1.mp4|reel-1-poster.jpg|Char Bagh Kurta Set,reel-2.mp4|reel-2-poster.jpg|Padmini Dress,reel-3.mp4|reel-3-poster.jpg|Aprajita Odhani,reel-4.mp4|reel-4-poster.jpg|Fitoor Skirt,reel-5.mp4|reel-5-poster.jpg|Fitoor Shirt' | split: ',' %}
+    {% assign reels = 'reel-1-web.mp4|reel-1-poster.jpg|Char Bagh Kurta Set,reel-2.mp4|reel-2-poster.jpg|Padmini Dress,reel-3.mp4|reel-3-poster.jpg|Aprajita Odhani,reel-4.mp4|reel-4-poster.jpg|Fitoor Skirt,reel-5-web.mp4|reel-5-poster.jpg|Fitoor Shirt' | split: ',' %}
     {% for item in reels %}
       {% assign pair = item | split: '|' %}
       <article class="reel-card reveal">
-        <video muted loop playsinline preload="none" poster="{{ pair[1] | file_url }}" data-autoplay-video aria-label="{{ pair[2] | escape }} reel">
-          <source src="{{ pair[0] | file_url }}" type="video/mp4">
-        </video>
-        <h3>{{ pair[2] }}</h3>
+        <a href="{{ routes.all_products_collection_url }}?handle=collections">
+          <video muted loop playsinline preload="none" poster="{{ pair[1] | file_url }}" data-autoplay-video aria-label="{{ pair[2] | escape }} reel">
+            <source src="{{ pair[0] | file_url }}" type="video/mp4">
+          </video>
+          <h3>{{ pair[2] }}</h3>
+        </a>
       </article>
     {% endfor %}
   </div>
 </section>
 
-<section class="section newsletter reveal" aria-labelledby="newsletterTitle"><div class="shell newsletter-layout"><img class="newsletter-botanical" src="{{ 'image.png' | file_url }}" alt="" aria-hidden="true" loading="lazy" width="520" height="520"><div class="newsletter-copy"><p class="eyebrow">Letters from the studio</p><h2 class="display" id="newsletterTitle">Love Letters To Your Inbox</h2><p>New chapters, atelier notes, and first access - sent only when there is something worth sharing.</p>{% form 'customer', class: 'newsletter-form' %}<input type="hidden" name="contact[tags]" value="newsletter"><label class="sr-only" for="newsletterEmail">Email address</label><input id="newsletterEmail" name="contact[email]" type="email" placeholder="your email, softly" required><button class="button" type="submit">Subscribe</button>{% endform %}</div></div></section>
-{% schema %}{"name":"Ode HTML homepage","presets":[{"name":"Ode HTML homepage"}]}{% endschema %}
+<section class="section newsletter reveal" aria-labelledby="newsletterTitle">
+  <div class="shell newsletter-layout">
+    <img class="newsletter-botanical" src="{{ 'image.png' | file_url }}" alt="" aria-hidden="true" loading="lazy" width="520" height="520">
+    <div class="newsletter-copy">
+      <p class="eyebrow">Letters from the studio</p>
+      <h2 class="display" id="newsletterTitle">Love Letters To Your Inbox</h2>
+      <p>New chapters, atelier notes, and first access - sent only when there is something worth sharing.</p>
+      {% form 'customer', class: 'newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="sr-only" for="newsletterEmail">Email address</label>
+        <input id="newsletterEmail" name="contact[email]" type="email" placeholder="your email, softly" required>
+        <button class="button" type="submit">Subscribe</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "V1 index homepage",
+  "presets": [
+    {
+      "name": "V1 index homepage"
+    }
+  ]
+}
+{% endschema %}
