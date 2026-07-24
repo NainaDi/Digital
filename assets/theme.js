@@ -1,5 +1,11 @@
 document.documentElement.classList.remove('no-js');
 
+function hydrateLucideIcons() {
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+}
+
 const header = document.querySelector('.site-header');
 if (header) {
   window.addEventListener('scroll', () => header.classList.toggle('is-scrolled', window.scrollY > 8), { passive: true });
@@ -59,6 +65,8 @@ document.querySelectorAll('.tabs').forEach((tabs) => {
   }
 
   function initOtoHomeInteractions() {
+    hydrateLucideIcons();
+
     const homeRail = document.getElementById('homeProductRail');
     const homeTabs = document.querySelectorAll('[data-home-tab]');
     if (homeRail && homeTabs.length) {
@@ -111,6 +119,7 @@ document.querySelectorAll('.tabs').forEach((tabs) => {
           item.setAttribute('aria-selected', String(active));
         });
         refreshReveals(community);
+        hydrateLucideIcons();
       };
       communityTabs.forEach((button) => button.addEventListener('click', () => renderCommunity(button.dataset.communityTab)));
       renderCommunity('creators');
@@ -119,4 +128,5 @@ document.querySelectorAll('.tabs').forEach((tabs) => {
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initOtoHomeInteractions);
   else initOtoHomeInteractions();
+  window.addEventListener('load', hydrateLucideIcons, { once: true });
 }());
