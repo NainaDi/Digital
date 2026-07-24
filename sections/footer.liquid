@@ -1,14 +1,204 @@
-<footer class="footer"><p class="brand">{{ shop.name }}</p><p>{{ section.settings.text }}</p></footer>
+<div class="footer-paper-edge" aria-hidden="true">
+  <img src="{{ 'newsletter-background.png' | file_url }}" alt="" loading="lazy" width="1600" height="500">
+</div>
+
+<footer class="site-footer" aria-label="Footer">
+  <div class="footer-top">
+    <a class="footer-brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | default: 'Ode to Odd' }} home">
+      <img class="footer-wordmark" src="{{ 'footer-wordmark.png' | file_url }}" alt="{{ shop.name | default: 'Ode to Odd' }}" loading="lazy" width="980" height="210">
+      <span class="footer-wordmark-text">{{ shop.name | default: 'Ode to Odd' }}</span>
+    </a>
+  </div>
+
+  <div class="footer-grid">
+    <p class="footer-intro">Objects of quiet expression, made slowly in India and intended to gather a life of their own.</p>
+
+    <nav class="footer-col" aria-label="Shop">
+      <h3>Shop</h3>
+      <a href="{{ routes.all_products_collection_url }}">New In</a>
+      <a href="{{ routes.collections_url }}">Collections</a>
+      <a href="{{ routes.all_products_collection_url }}?filter.p.product_type=Dresses">Dresses</a>
+      <a href="{{ routes.all_products_collection_url }}?filter.p.product_type=Jewellery">Jewellery</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Discover">
+      <h3>Discover</h3>
+      <a href="{{ pages['designers-note'].url | default: '/pages/designers-note' }}">Designer's Note</a>
+      <a href="{{ pages['our-story'].url | default: '/pages/our-story' }}">Our Story</a>
+      <a href="{{ routes.search_url }}">Search</a>
+      <a href="{{ pages['gift-card'].url | default: '/pages/gift-card' }}">Gift Card</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Care">
+      <h3>Care</h3>
+      <a href="{{ pages['product-care'].url | default: '/pages/product-care' }}">Product Care</a>
+      <a href="{{ pages['shipping-and-returns'].url | default: '/pages/shipping-and-returns' }}">Shipping &amp; Returns</a>
+      <a href="{{ policies.privacy_policy.url | default: '/policies/privacy-policy' }}">Privacy Policy</a>
+      <a href="mailto:info@odetoodd.com">Contact</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Connect">
+      <h3>Connect</h3>
+      <a href="https://www.instagram.com/odetoodd/" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:info@odetoodd.com">info@odetoodd.com</a>
+      <a href="{{ routes.cart_url }}">Cart</a>
+      <a href="{{ routes.account_url }}">Account</a>
+    </nav>
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 {{ shop.name | default: 'Ode to Odd' }} &middot; Poonam Apparels Inc &middot; Crafted slowly in India</span>
+    <span>Shopify theme &middot; Secure checkout by Shopify</span>
+  </div>
+</footer>
+
+<style>
+  .footer-paper-edge {
+    position: relative;
+    z-index: 1;
+    margin-top: clamp(28px, 7vw, 90px);
+    height: clamp(76px, 14vw, 180px);
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(251, 243, 229, 0), #321f18 74%);
+  }
+
+  .footer-paper-edge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    opacity: .38;
+    mix-blend-mode: multiply;
+  }
+
+  .site-footer {
+    position: relative;
+    margin-top: -1px;
+    padding: clamp(38px, 7vw, 86px) clamp(20px, 5vw, 72px) 28px;
+    color: var(--paper-soft, #fff9ed);
+    background: var(--ink, #321f18);
+    background-image: linear-gradient(rgba(50,31,24,.9), rgba(50,31,24,.94)), url('{{ 'footer-texture.png' | file_url }}');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .footer-top {
+    border-bottom: 1px solid rgba(255,249,237,.22);
+    padding-bottom: clamp(28px, 5vw, 56px);
+    margin-bottom: clamp(28px, 5vw, 58px);
+  }
+
+  .footer-brand {
+    display: inline-grid;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .footer-wordmark {
+    width: min(820px, 82vw);
+    max-height: 190px;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .footer-wordmark-text {
+    display: none;
+    font-family: Georgia, serif;
+    font-size: clamp(3rem, 11vw, 9rem);
+    line-height: .82;
+    letter-spacing: .02em;
+  }
+
+  .footer-wordmark[src=""], .footer-wordmark:not([src]) {
+    display: none;
+  }
+
+  .footer-wordmark[src=""] + .footer-wordmark-text,
+  .footer-wordmark:not([src]) + .footer-wordmark-text {
+    display: block;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 1.35fr) repeat(4, minmax(130px, .65fr));
+    gap: clamp(24px, 4vw, 52px);
+    align-items: start;
+  }
+
+  .footer-intro {
+    max-width: 420px;
+    margin: 0;
+    color: #ead6c5;
+    font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+    line-height: 1.65;
+  }
+
+  .footer-col {
+    display: grid;
+    gap: 12px;
+  }
+
+  .footer-col h3 {
+    margin: 0 0 6px;
+    color: #fff9ed;
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: .02em;
+  }
+
+  .footer-col a {
+    color: #ead6c5;
+    text-decoration: none;
+    transition: color .2s ease, transform .2s ease;
+  }
+
+  .footer-col a:hover {
+    color: #fff9ed;
+    transform: translateX(3px);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: clamp(32px, 5vw, 68px);
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,249,237,.18);
+    color: rgba(255,249,237,.72);
+    font-size: .82rem;
+    letter-spacing: .04em;
+  }
+
+  @media (max-width: 980px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-intro {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .site-footer {
+      padding-inline: 20px;
+    }
+
+    .footer-wordmark {
+      width: 100%;
+    }
+
+    .footer-grid,
+    .footer-bottom {
+      grid-template-columns: 1fr;
+      display: grid;
+    }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Footer",
-  "settings": [
-    {
-      "type": "text",
-      "id": "text",
-      "label": "Text",
-      "default": "Slow fashion for beautifully imperfect days."
-    }
-  ]
+  "settings": []
 }
 {% endschema %}
