@@ -108,7 +108,8 @@ body[data-page="home"] .site-header.is-scrolled, body[data-page="home"] .site-he
 .quick-add, .quick-view { position: absolute; right: 12px; bottom: 12px; left: 12px; z-index: 2; padding: 12px; color: var(--on-dark); background: color-mix(in srgb, var(--accent) 92%, transparent); font-size: calc(9px * var(--type-scale)); letter-spacing: .18em; text-align: center; text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s; }
 .quick-view { bottom: 60px; }
 .product-card:hover .quick-add, .product-card:hover .quick-view { opacity: 1; transform: none; }
-.product-card-info, .source-product-card > h3, .source-product-card > p { padding-top: 17px; }
+.product-card-info, .source-product-card > h3 { padding-top: 17px; }
+.source-product-card > p { padding-top: 0; }
 .product-card-info h3, .source-product-card h3 { margin: 0; color: var(--accent); font-family: var(--display-font); font-size: calc(22px * var(--type-scale)); font-weight: 400; line-height: 1.18; }
 .product-card-info p, .source-product-card p, .product-card strong { display: block; margin: 5px 0 0; color: var(--ink); font-size: calc(11px * var(--type-scale)); font-weight: 300; letter-spacing: .09em; }
 
