@@ -1,32 +1,48 @@
-<div class="announcement">Complimentary shipping on domestic orders above ₹15,000</div>
-<header class="site-header">
+{% if template.name == 'index' %}
+  <div class="announcement">Complimentary shipping on domestic orders above ₹15,000</div>
+{% endif %}
+
+<header class="site-header" id="siteHeader">
   <nav class="nav" aria-label="{{ 'accessibility.main_navigation' | t }}">
-    <a class="brand" href="{{ routes.root_url }}">{{ shop.name | default: 'Ode to Odd' }}</a>
-    <div class="navLinks">
-      {% for link in linklists[section.settings.menu].links %}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {% else %}
-        <a href="{{ routes.collections_url }}">Collection</a>
-        <a href="/pages/our-story">Our Story</a>
-        <a href="{{ routes.all_products_collection_url }}">Shop</a>
-      {% endfor %}
-    </div>
-    <div class="header-actions">
-      <a href="{{ routes.search_url }}" aria-label="{{ 'general.search.search' | t }}">{% render 'icon', icon: 'search' %}</a>
-      <a href="{{ routes.cart_url }}" aria-label="{{ 'templates.cart.cart' | t }}">{% render 'icon', icon: 'bag' %}<span>{{ cart.item_count }}</span></a>
+    <a class="mobile-menu-button icon-button" href="{{ routes.collections_url }}" aria-label="Open menu">
+      <i data-lucide="menu" aria-hidden="true"></i>
+    </a>
+
+    <a class="brand-mark" href="{{ routes.root_url }}" aria-label="{{ shop.name | default: 'Ode to Odd' }} home">
+      <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="47" stroke="currentColor" stroke-width="2.6"></circle>
+        <circle cx="50" cy="50" r="41" stroke="currentColor" stroke-width="1.6"></circle>
+        <line x1="9.5" y1="42" x2="90.5" y2="42" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"></line>
+        <line x1="50" y1="42" x2="50" y2="90" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"></line>
+      </svg>
+    </a>
+
+    <ul class="primary-nav">
+      <li><a class="nav-link" href="{{ routes.all_products_collection_url }}?sort_by=created-descending">New In</a></li>
+      <li><a class="nav-link" href="{{ routes.all_products_collection_url }}?handle=shop">Shop</a></li>
+      <li><a class="nav-link" href="{{ routes.collections_url }}">Collections</a></li>
+      <li><a class="nav-link" href="{{ pages['our-story'].url | default: '/pages/our-story' }}">Discover</a></li>
+      <li><a class="nav-link" href="{{ pages['gift-card'].url | default: '/pages/gift-card' }}">Gift Card</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a class="icon-button" id="searchOpen" href="{{ routes.search_url }}" aria-label="{{ 'general.search.search' | t }}">
+        <i data-lucide="search" aria-hidden="true"></i>
+      </a>
+      <a class="icon-button account-action" id="accountOpen" href="{{ routes.account_url }}" aria-label="Account">
+        <i data-lucide="user-round" aria-hidden="true"></i>
+      </a>
+      <a class="icon-button" id="cartOpen" href="{{ routes.cart_url }}" aria-label="{{ 'templates.cart.cart' | t }}">
+        <i data-lucide="shopping-bag" aria-hidden="true"></i>
+        <span class="cart-badge" id="cartBadge">{{ cart.item_count }}</span>
+      </a>
     </div>
   </nav>
 </header>
+
 {% schema %}
 {
   "name": "Header",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "main-menu"
-    }
-  ]
+  "settings": []
 }
 {% endschema %}
