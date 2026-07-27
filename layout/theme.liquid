@@ -13,6 +13,7 @@
     {{ content_for_header }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
     {{ 'v1-index-overrides.css' | asset_url | stylesheet_tag }}
+    {{ 'v1-footer-overrides.css' | asset_url | stylesheet_tag }}
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </head>
