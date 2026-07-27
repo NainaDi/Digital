@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="no-js" lang="{{ request.locale.iso_code }}">
+<html class="no-js" lang="{{ request.locale.iso_code }}" data-theme="porcelain" data-font="instrument" data-type-size="current">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#fbf3e5">
+    <meta name="theme-color" content="#f3f2ee">
     <link rel="canonical" href="{{ canonical_url }}">
     <title>{{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
     {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
@@ -16,7 +16,7 @@
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </head>
-  <body>
+  <body data-page="{% if template.name == 'index' %}home{% elsif template.name == 'collection' %}collection{% elsif template.name == 'product' %}product{% elsif template.name == 'cart' %}cart{% elsif template.name == 'page' and template.suffix == 'gift-card' %}gift-card{% else %}page{% endif %}">
     <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
     {% sections 'header-group' %}
     <main id="MainContent" role="main" tabindex="-1">{{ content_for_layout }}</main>
