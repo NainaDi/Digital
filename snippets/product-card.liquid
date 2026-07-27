@@ -1,15 +1,30 @@
-<article class="product-card">
-  <a href="{{ product.url | default: '#' }}" class="product-card__media" aria-label="{{ product.title | default: 'Product' | escape }}">
-    {% if product.featured_media %}
-      {{ product.featured_media | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 90vw', widths: '300,500,700', alt: product.featured_media.alt | default: product.title }}
-    {% elsif product.handle != blank %}
-      {% assign source_image_filename = 'product-' | append: product.handle | append: '.jpg' %}
-      <img src="{{ source_image_filename | file_url }}" alt="{{ product.title | escape }}" loading="lazy" width="700" height="900">
-    {% else %}
-      <span>{{ fallback_index | default: 1 | prepend: '0' | slice: -2, 2 }}</span>
-    {% endif %}
-  </a>
-  <h3><a href="{{ product.url | default: '#' }}">{{ product.title | default: 'Char Bagh Kurta Set' }}</a></h3>
-  {% if product.description != blank %}<p>{{ product.description | strip_html | truncate: 82 }}</p>{% endif %}
-  <strong>{% if product.price %}{% render 'price', product: product %}{% else %}{{ 'products.product.from_price_html' | t: price: '₹8,900' }}{% endif %}</strong>
+<article class="product-card reveal"{% if product.handle != blank %} data-product-handle="{{ product.handle | escape }}"{% endif %}>
+  <div class="product-media-wrap">
+    <a href="{{ product.url | default: '#' }}" class="product-media" aria-label="{{ product.title | default: 'Product' | escape }}">
+      {% if product.tags contains 'Edition of One' %}<span class="product-badge">Edition of One</span>{% endif %}
+      {% if product.featured_media %}
+        {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', class: 'product-primary', sizes: '(min-width: 990px) 25vw, 90vw', widths: '360,540,720,900', alt: product.featured_media.alt | default: product.title }}
+        {% assign secondary_media = product.media[1] %}
+        {% if secondary_media and secondary_media.media_type == 'image' %}
+          {{ secondary_media | image_url: width: 900 | image_tag: loading: 'lazy', class: 'product-secondary', sizes: '(min-width: 990px) 25vw, 90vw', widths: '360,540,720,900', alt: secondary_media.alt | default: product.title }}
+        {% endif %}
+      {% elsif product.handle != blank %}
+        {% assign source_image_filename = 'product-' | append: product.handle | append: '.jpg' %}
+        {% assign source_detail_filename = 'product-' | append: product.handle | append: '-detail.jpg' %}
+        <img class="product-primary" src="{{ source_image_filename | file_url }}" alt="{{ product.title | escape }}" loading="lazy" width="900" height="1200">
+        <img class="product-secondary" src="{{ source_detail_filename | file_url }}" alt="{{ product.title | escape }} detail" loading="lazy" width="900" height="1200">
+      {% else %}
+        <span>{{ fallback_index | default: 1 | prepend: '0' | slice: -2, 2 }}</span>
+      {% endif %}
+    </a>
+    <button class="wishlist" type="button" aria-label="Add {{ product.title | default: 'product' | escape }} to wishlist"><i data-lucide="heart" aria-hidden="true"></i></button>
+    <div class="product-card-actions">
+      <a class="quick-view" href="{{ product.url | default: '#' }}">Quick view</a>
+      <a class="quick-add" href="{{ product.url | default: '#' }}">{% if product.has_only_default_variant %}Quick add{% else %}Choose options{% endif %}</a>
+    </div>
+  </div>
+  <div class="product-card-info">
+    <h3><a href="{{ product.url | default: '#' }}">{{ product.title | default: 'Char Bagh Kurta Set' }}</a></h3>
+    <p class="money">{% if product.price %}{% render 'price', product: product %}{% else %}₹ 8,900{% endif %}</p>
+  </div>
 </article>
