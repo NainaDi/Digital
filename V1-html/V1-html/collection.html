@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-theme="porcelain" data-font="instrument">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse Ode to Odd collections and handworked pieces.">
+  <title>Collection - Ode to Odd</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Jost:wght@300;400;500&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="assets/js/data.js?v=5"></script>
+  <script defer src="assets/js/site.js?v=6"></script>
+</head>
+<body data-page="collection">
+  <div id="site-shell"></div>
+
+  <main>
+    <header class="page-hero reveal">
+      <p class="eyebrow">The archive</p>
+      <h1 class="display" id="collectionTitle">All Pieces</h1>
+      <p id="collectionDescription">An evolving archive of handworked clothing and objects.</p>
+    </header>
+
+    <section class="shell" aria-label="Collection products">
+      <div class="filter-bar">
+        <div class="collection-tools">
+          <button class="collection-tool" id="filterOpen" type="button" aria-label="Filter products" aria-expanded="false" aria-controls="filterCurtain"><i data-lucide="sliders-horizontal" aria-hidden="true"></i><span>Filter</span><span class="tool-count" id="activeFilterCount" hidden>0</span></button>
+          <button class="collection-tool" id="sortOpen" type="button" aria-label="Sort products" aria-expanded="false" aria-controls="sortCurtain"><i data-lucide="arrow-up-down" aria-hidden="true"></i><span>Sort</span><small id="sortCurrent">Featured</small></button>
+        </div>
+        <nav class="collection-subnav" id="collectionSubnav" aria-label="Browse product categories"></nav>
+        <span class="collection-count" id="collectionCount">0 pieces</span>
+      </div>
+      <div class="collection-grid" id="collectionGrid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div class="collection-curtain-backdrop" id="collectionCurtainBackdrop"></div>
+  <aside class="collection-curtain" id="filterCurtain" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="filterCurtainTitle">
+    <div class="collection-curtain-head"><div><p class="eyebrow">Refine the archive</p><h2 id="filterCurtainTitle">Filter</h2></div><button class="icon-button" id="filterClose" type="button" aria-label="Close filters"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <div class="collection-curtain-body filter-controls">
+      <label class="filter-field" for="categoryFilter"><span>Category</span><select id="categoryFilter"><option value="">All categories</option><option>Dresses</option><option>Co-ord Sets</option><option>Kurta Sets</option><option>Shirts</option><option>Trousers</option><option>Skirts</option><option>Kaftans</option><option>Jumpsuits</option><option>Outerwear</option><option>Odhani</option><option>Jewellery</option><option>Bags</option></select></label>
+      <label class="filter-field" for="sizeFilter"><span>Size</span><select id="sizeFilter"><option value="">All sizes</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>One Size</option></select></label>
+      <label class="filter-field" for="priceFilter"><span>Price</span><select id="priceFilter"><option value="">All prices</option><option value="under-25000">Under Rs. 25,000</option><option value="25000-50000">Rs. 25,000 - 50,000</option><option value="over-50000">Above Rs. 50,000</option></select></label>
+      <label class="filter-toggle"><span>Ready to Ship</span><input id="readyFilter" type="checkbox"></label>
+      <label class="filter-toggle" id="sampleFilter"><span>Sample Sale</span><input type="checkbox"></label>
+    </div>
+    <div class="collection-curtain-foot"><button class="button-soft" id="filterReset" type="button">Reset</button><button class="button-solid" id="filterApply" type="button">View Pieces</button></div>
+  </aside>
+
+  <aside class="collection-curtain" id="sortCurtain" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="sortCurtainTitle">
+    <div class="collection-curtain-head"><div><p class="eyebrow">Order the archive</p><h2 id="sortCurtainTitle">Sort</h2></div><button class="icon-button" id="sortClose" type="button" aria-label="Close sorting"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <div class="collection-curtain-body sort-options" role="radiogroup" aria-label="Sort products">
+      <button class="sort-option is-active" type="button" role="radio" aria-checked="true" data-sort-value="featured"><span>Featured</span><i data-lucide="check" aria-hidden="true"></i></button>
+      <button class="sort-option" type="button" role="radio" aria-checked="false" data-sort-value="price-low"><span>Price: low to high</span><i data-lucide="check" aria-hidden="true"></i></button>
+      <button class="sort-option" type="button" role="radio" aria-checked="false" data-sort-value="price-high"><span>Price: high to low</span><i data-lucide="check" aria-hidden="true"></i></button>
+      <button class="sort-option" type="button" role="radio" aria-checked="false" data-sort-value="name"><span>Name</span><i data-lucide="check" aria-hidden="true"></i></button>
+      <label class="sr-only" for="sortFilter">Sort products</label><select class="sr-only" id="sortFilter"><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name</option></select>
+    </div>
+  </aside>
+
+  <div id="site-footer"></div>
+</body>
+</html>
